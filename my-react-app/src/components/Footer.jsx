@@ -1,12 +1,20 @@
+import React from 'react'
 import './Footer.css'
 
-export default function Footer() {
-  const year = new Date().getFullYear()
+function Footer() {
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <p>© {year} my-react-app. All rights reserved.</p>
-      </div>
+    <footer
+      className="footer"
+      style={{
+        fontSize: '50px',
+        fontWeight: 'bold',
+        color: 'var(--text-h)',
+        padding: '20px 0'
+      }}
+    >
+      © 2026 N8NTestProject. All rights reserved.
     </footer>
   )
 }
+
+export default Footer
