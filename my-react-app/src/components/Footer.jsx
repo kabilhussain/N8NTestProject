@@ -2,7 +2,6 @@ import React from 'react'
 import './Footer.css'
 
 function Footer() {
-  const year = new Date().getFullYear()
   return (
     <footer
       className="footer"
@@ -10,11 +9,10 @@ function Footer() {
         fontSize: '50px',
         fontWeight: 'bold',
         color: 'var(--text-h)',
-        textAlign: 'center',
-        padding: '20px 0',
+        padding: '20px 0'
       }}
     >
-      © {year} My React App. All rights reserved.
+      © 2026 N8NTestProject. All rights reserved.
     </footer>
   )
 }
