@@ -1,36 +1,55 @@
 import React from 'react'
 
-export default function Hero() {
+const Hero = () => {
   return (
     <section
       className="hero"
       style={{
-        background: 'var(--accent-bg)',
         padding: '80px 20px',
-        textAlign: 'center',
-        color: 'var(--text-h)',
+        background: 'var(--code-bg)',
       }}
     >
-      <h1>Coffee Haven</h1>
-      <h2>Your daily brew of happiness</h2>
-      <button
-        className="counter"
+      <div
+        id="center"
         style={{
-          marginTop: '24px',
-          fontSize: '18px',
-          padding: '12px 32px',
-          cursor: 'pointer',
-          background: 'var(--accent)',
-          color: '#fff',
-          border: 'none',
-          borderRadius: '4px',
-        }}
-        onClick={() => {
-          // handle order action or navigate
+          gap: '16px',
         }}
       >
-        Order Now
-      </button>
+        <h1>Coffee Haven</h1>
+        <h2
+          style={{
+            color: 'var(--text)',
+            fontSize: '24px',
+            maxWidth: '600px',
+          }}
+        >
+          Where every cup feels like home
+        </h2>
+        <button
+          type="button"
+          style={{
+            marginTop: '24px',
+            padding: '12px 28px',
+            fontSize: '18px',
+            color: '#fff',
+            background: 'var(--accent)',
+            border: 'none',
+            borderRadius: '6px',
+            cursor: 'pointer',
+            transition: 'background 0.3s',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.background = 'var(--accent-border)'
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.background = 'var(--accent)'
+          }}
+        >
+          Order Now
+        </button>
+      </div>
     </section>
   )
 }
+
+export default Hero
