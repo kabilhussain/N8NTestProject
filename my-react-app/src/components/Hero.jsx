@@ -1,55 +1,20 @@
 import React from 'react'
+import './Hero.css'
+import WhyChooseUs from './WhyChooseUs.jsx'
 
-const Hero = () => {
+export default function Hero() {
   return (
-    <section
-      className="hero"
-      style={{
-        padding: '80px 20px',
-        background: 'var(--code-bg)',
-      }}
-    >
-      <div
-        id="center"
-        style={{
-          gap: '16px',
-        }}
-      >
-        <h1>Coffee Haven</h1>
-        <h2
-          style={{
-            color: 'var(--text)',
-            fontSize: '24px',
-            maxWidth: '600px',
-          }}
-        >
-          Where every cup feels like home
-        </h2>
-        <button
-          type="button"
-          style={{
-            marginTop: '24px',
-            padding: '12px 28px',
-            fontSize: '18px',
-            color: '#fff',
-            background: 'var(--accent)',
-            border: 'none',
-            borderRadius: '6px',
-            cursor: 'pointer',
-            transition: 'background 0.3s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.background = 'var(--accent-border)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = 'var(--accent)'
-          }}
-        >
-          Order Now
-        </button>
+    <section className="hero-section">
+      <div className="hero-gradient">
+        <div className="hero-container">
+          <div className="hero-card fade-in-up">
+            <h1 className="hero-title">Coffee Haven</h1>
+            <p className="hero-tagline">Your daily dose of premium coffee</p>
+            <button className="order-btn">Order Now</button>
+          </div>
+        </div>
       </div>
+      <WhyChooseUs />
     </section>
   )
 }
-
-export default Hero
