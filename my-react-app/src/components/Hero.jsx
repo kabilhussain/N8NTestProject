@@ -1,17 +1,36 @@
 import React from 'react'
 
-function Hero() {
+export default function Hero() {
   return (
-    <section className="hero-section" style={{ padding: '80px 20px', backgroundColor: 'var(--accent-bg)' }}>
-      <h1 style={{ color: 'var(--text-h)', margin: 0 }}>Coffee Haven</h1>
-      <p style={{ color: 'var(--text)', fontSize: '18px', margin: '16px 0' }}>
-        Your daily escape in a cup
-      </p>
-      <button type="button" className="counter" style={{ fontSize: '18px', padding: '12px 24px' }}>
+    <section
+      className="hero"
+      style={{
+        background: 'var(--accent-bg)',
+        padding: '80px 20px',
+        textAlign: 'center',
+        color: 'var(--text-h)',
+      }}
+    >
+      <h1>Coffee Haven</h1>
+      <h2>Your daily brew of happiness</h2>
+      <button
+        className="counter"
+        style={{
+          marginTop: '24px',
+          fontSize: '18px',
+          padding: '12px 32px',
+          cursor: 'pointer',
+          background: 'var(--accent)',
+          color: '#fff',
+          border: 'none',
+          borderRadius: '4px',
+        }}
+        onClick={() => {
+          // handle order action or navigate
+        }}
+      >
         Order Now
       </button>
     </section>
   )
 }
-
-export default Hero
