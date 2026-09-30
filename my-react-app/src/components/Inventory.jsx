@@ -1,65 +1,77 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-function Inventory() {
+export default function Inventory() {
+  const [orderPlaced, setOrderPlaced] = useState(false)
+
   const products = [
-    { id: 1, name: 'Espresso Beans', quantity: 2, price: 12.99 },
-    { id: 2, name: 'Colombian Roast', quantity: 1, price: 15.49 },
-    { id: 3, name: 'French Press', quantity: 1, price: 29.99 }
+    { id: 1, name: 'Espresso', quantity: 2 },
+    { id: 2, name: 'Latte', quantity: 1 },
+    { id: 3, name: 'Cappuccino', quantity: 3 },
   ]
 
   const handlePlaceOrder = () => {
-    alert('Your order has been placed!')
+    setOrderPlaced(true)
   }
 
   const listStyle = {
     listStyle: 'none',
     padding: 0,
-    margin: 0
+    maxWidth: '400px',
+    margin: '16px auto',
   }
 
   const itemStyle = {
     display: 'flex',
     justifyContent: 'space-between',
-    padding: '12px 0',
-    borderBottom: '1px solid var(--border)'
-  }
-
-  const containerStyle = {
-    maxWidth: '600px',
-    margin: '32px auto',
-    padding: '0 16px',
-    textAlign: 'left'
+    padding: '8px 12px',
+    borderBottom: '1px solid var(--border)',
   }
 
   const buttonStyle = {
-    marginTop: '24px',
     padding: '10px 20px',
+    fontSize: '16px',
     background: 'var(--accent)',
-    color: 'var(--bg)',
+    color: '#fff',
     border: 'none',
     borderRadius: '4px',
     cursor: 'pointer',
-    fontSize: '16px'
+    marginTop: '16px',
   }
 
   return (
-    <div style={containerStyle}>
-      <h1>Inventory</h1>
-      <ul style={listStyle}>
-        {products.map(product => (
-          <li key={product.id} style={itemStyle}>
-            <span>
-              {product.name} &times; {product.quantity}
-            </span>
-            <span>${(product.price * product.quantity).toFixed(2)}</span>
-          </li>
-        ))}
-      </ul>
-      <button style={buttonStyle} onClick={handlePlaceOrder}>
-        Place Order
-      </button>
+    <div style={{ padding: '24px', textAlign: 'center' }}>
+      {!orderPlaced ? (
+        <>
+          <h2>Your Inventory</h2>
+          <ul style={listStyle}>
+            {products.map((prod) => (
+              <li key={prod.id} style={itemStyle}>
+                <span>{prod.name}</span>
+                <span>Qty: {prod.quantity}</span>
+              </li>
+            ))}
+          </ul>
+          <button style={buttonStyle} onClick={handlePlaceOrder}>
+            Place Order
+          </button>
+        </>
+      ) : (
+        <>
+          <h2>Order Getting Prepared</h2>
+          <ul style={listStyle}>
+            {products.map((prod) => (
+              <li key={prod.id} style={itemStyle}>
+                <span>
+                  {prod.name} x {prod.quantity}
+                </span>
+                <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>
+                  In Progress
+                </span>
+              </li>
+            ))}
+          </ul>
+        </>
+      )}
     </div>
   )
 }
-
-export default Inventory
