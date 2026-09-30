@@ -4,6 +4,7 @@ import WhyChooseUs from './components/WhyChooseUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
 import MenuHighlights from './components/MenuHighlights.jsx'
 import Inventory from './components/Inventory.jsx'
+import Products from './components/Products.jsx'
 import Footer from './components/Footer.jsx'
 import './App.css'
 
@@ -20,6 +21,9 @@ function App() {
           </Link>
           <Link to="/inventory" style={{ margin: '0 8px', textDecoration: 'none', color: 'var(--text-h)' }}>
             Inventory
+          </Link>
+          <Link to="/products" style={{ margin: '0 8px', textDecoration: 'none', color: 'var(--text-h)' }}>
+            Products
           </Link>
         </nav>
       </header>
@@ -49,6 +53,15 @@ function App() {
           element={
             <>
               <Inventory />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/products"
+          element={
+            <>
+              <Products />
               <Footer />
             </>
           }
