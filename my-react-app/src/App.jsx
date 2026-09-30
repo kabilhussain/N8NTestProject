@@ -3,6 +3,7 @@ import Hero from './components/Hero.jsx'
 import WhyChooseUs from './components/WhyChooseUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
 import MenuHighlights from './components/MenuHighlights.jsx'
+import Inventory from './components/Inventory.jsx'
 import Footer from './components/Footer.jsx'
 import './App.css'
 
@@ -16,6 +17,9 @@ function App() {
           </Link>
           <Link to="/about" style={{ margin: '0 8px', textDecoration: 'none', color: 'var(--text-h)' }}>
             About Us
+          </Link>
+          <Link to="/inventory" style={{ margin: '0 8px', textDecoration: 'none', color: 'var(--text-h)' }}>
+            Inventory
           </Link>
         </nav>
       </header>
@@ -36,6 +40,15 @@ function App() {
           element={
             <>
               <AboutUs />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/inventory"
+          element={
+            <>
+              <Inventory />
               <Footer />
             </>
           }
