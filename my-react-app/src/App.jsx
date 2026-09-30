@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { Routes, Route, Link } from 'react-router-dom'
 import Hero from './components/Hero.jsx'
 import WhyChooseUs from './components/WhyChooseUs.jsx'
 import AboutUs from './components/AboutUs.jsx'
@@ -8,7 +8,7 @@ import './App.css'
 
 function App() {
   return (
-    <Router>
+    <>
       <header style={{ padding: '16px', textAlign: 'center', borderBottom: '1px solid var(--border)' }}>
         <nav>
           <Link to="/" style={{ margin: '0 8px', textDecoration: 'none', color: 'var(--text-h)' }}>
@@ -41,7 +41,7 @@ function App() {
           }
         />
       </Routes>
-    </Router>
+    </>
   )
 }
 
