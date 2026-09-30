@@ -1,20 +1,16 @@
 import React from 'react'
 import './Hero.css'
-import WhyChooseUs from './WhyChooseUs.jsx'
 
 export default function Hero() {
   return (
-    <section className="hero-section">
-      <div className="hero-gradient">
-        <div className="hero-container">
-          <div className="hero-card fade-in-up">
-            <h1 className="hero-title">Coffee Haven</h1>
-            <p className="hero-tagline">Your daily dose of premium coffee</p>
-            <button className="order-btn">Order Now</button>
-          </div>
+    <section className="hero">
+      <div id="center">
+        {/* Coffee Shop Name Card */}
+        <div className="card">
+          <h1>Coffee Shop Name</h1>
+          <p>Your daily dose of happiness</p>
         </div>
       </div>
-      <WhyChooseUs />
     </section>
   )
 }
