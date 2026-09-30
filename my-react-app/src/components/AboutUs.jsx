@@ -1,37 +1,21 @@
-import React from 'react'
+import { Fragment } from 'react'
 
 function AboutUs() {
   return (
-    <main style={{ padding: '24px', textAlign: 'left', maxWidth: '800px', margin: '0 auto' }}>
+    <main id="center">
       <h1>About Our Coffee Shop</h1>
       <p>
-        Welcome to Brew Haven, your cozy corner for the finest specialty coffee in town. Founded in 2015,
-        we've been committed to sourcing, roasting, and brewing the very best beans from around the world.
+        Welcome to Bean & Brew, your cozy corner for artisanal coffee and
+        delightful pastries. We believe every cup tells a story.
       </p>
-      <h2>Location</h2>
-      <address style={{ fontStyle: 'normal', lineHeight: '1.5' }}>
-        Brew Haven Coffee Shop<br />
-        123 Bean Boulevard<br />
-        Roastville, CA 90210
-      </address>
-      <h2>Opening Hours</h2>
-      <ul>
-        <li>Monday – Friday: 7:00 AM – 7:00 PM</li>
-        <li>Saturday: 8:00 AM – 6:00 PM</li>
-        <li>Sunday: 8:00 AM – 4:00 PM</li>
-      </ul>
-      <h2>Contact Us</h2>
-      <p>
-        Phone: (555) 123-4567<br />
-        Email: hello@brewhaven.com
-      </p>
-      <h2>Our Story</h2>
-      <p>
-        At Brew Haven, we believe that great coffee can bring people together. From the moment you step in,
-        you'll be greeted by the rich aroma of freshly roasted beans and the warmth of our friendly baristas.
-        Whether you're here for a quick espresso or to savor a slow-poured latte, we hope our space feels
-        like your home away from home.
-      </p>
+      <section style={{ marginTop: '24px', textAlign: 'left', maxWidth: '600px' }}>
+        <h2>Our Location</h2>
+        <p>123 Brew Lane<br />Caffeine City, CA 90210</p>
+        <h2>Hours of Operation</h2>
+        <p>Monday–Friday: 7:00 AM – 7:00 PM<br />Saturday–Sunday: 8:00 AM – 5:00 PM</p>
+        <h2>Contact Us</h2>
+        <p>Phone: (123) 456-7890<br />Email: hello@beanandbrew.com</p>
+      </section>
     </main>
   )
 }
