@@ -1,69 +1,39 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
 
-export default function AboutUs() {
-  const location = useLocation()
-
-  // Detailed About Us page at /about
-  if (location.pathname === '/about') {
-    return (
-      <div style={{ padding: '40px', maxWidth: '800px', margin: '0 auto', textAlign: 'left' }}>
-        <h1>About Brew Haven</h1>
-        <p>
-          Welcome to Brew Haven, your cozy neighborhood coffee retreat. Since 2010, we've been dedicated to serving
-          expertly roasted coffees and handcrafted treats in a warm, inviting atmosphere.
-        </p>
-
-        <h2>Our Location</h2>
-        <p>123 Brew Street<br />Seattle, WA 98101</p>
-
-        <h2>Opening Hours</h2>
-        <ul>
-          <li>Monday – Friday: 7:00 AM – 7:00 PM</li>
-          <li>Saturday: 8:00 AM – 6:00 PM</li>
-          <li>Sunday: 9:00 AM – 5:00 PM</li>
-        </ul>
-
-        <h2>Our Story</h2>
-        <p>
-          Brew Haven was founded by lifelong coffee enthusiasts who wanted to share their passion for
-          small-batch roasting and community gathering. We source beans from sustainable farms around the globe
-          and roast them in-house to bring out unique flavor profiles in every cup.
-        </p>
-
-        <h2>Get in Touch</h2>
-        <p>Email: info@brewhaven.com<br />Phone: (206) 555-0123</p>
-
-        <Link to="/" style={{ display: 'inline-block', marginTop: '24px', color: '#aa3bff', textDecoration: 'none' }}>
-          ← Back to Home
-        </Link>
-      </div>
-    )
-  }
-
-  // Preview section on home page
+function AboutUs() {
   return (
-    <section style={{ padding: '40px', textAlign: 'center' }}>
-      <h2>About Brew Haven</h2>
+    <main style={{ padding: '24px', textAlign: 'left', maxWidth: '800px', margin: '0 auto' }}>
+      <h1>About Our Coffee Shop</h1>
       <p>
-        Discover our cozy coffee shop in the heart of Seattle, serving artisan roasts, fresh pastries, and
-        a place to connect. Click below to learn more about who we are, where to find us, and what makes our
-        coffee special.
+        Welcome to Brew Haven, your cozy corner for the finest specialty coffee in town. Founded in 2015,
+        we've been committed to sourcing, roasting, and brewing the very best beans from around the world.
       </p>
-      <Link
-        to="/about"
-        style={{
-          display: 'inline-block',
-          marginTop: '16px',
-          padding: '12px 24px',
-          backgroundColor: '#aa3bff',
-          color: '#fff',
-          borderRadius: '4px',
-          textDecoration: 'none'
-        }}
-      >
-        Learn More →
-      </Link>
-    </section>
+      <h2>Location</h2>
+      <address style={{ fontStyle: 'normal', lineHeight: '1.5' }}>
+        Brew Haven Coffee Shop<br />
+        123 Bean Boulevard<br />
+        Roastville, CA 90210
+      </address>
+      <h2>Opening Hours</h2>
+      <ul>
+        <li>Monday – Friday: 7:00 AM – 7:00 PM</li>
+        <li>Saturday: 8:00 AM – 6:00 PM</li>
+        <li>Sunday: 8:00 AM – 4:00 PM</li>
+      </ul>
+      <h2>Contact Us</h2>
+      <p>
+        Phone: (555) 123-4567<br />
+        Email: hello@brewhaven.com
+      </p>
+      <h2>Our Story</h2>
+      <p>
+        At Brew Haven, we believe that great coffee can bring people together. From the moment you step in,
+        you'll be greeted by the rich aroma of freshly roasted beans and the warmth of our friendly baristas.
+        Whether you're here for a quick espresso or to savor a slow-poured latte, we hope our space feels
+        like your home away from home.
+      </p>
+    </main>
   )
 }
+
+export default AboutUs
