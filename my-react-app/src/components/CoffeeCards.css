@@ -1,51 +1,30 @@
-/* Responsive grid container for coffee cards */
+/* Responsive grid layout for coffee cards */
 .coffee-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 16px;
-  padding: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-/* Style each card (direct child of the grid) */
-.coffee-cards > * {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: var(--shadow);
-  display: flex;
-  flex-direction: column;
+/* Individual card spacing */
+.coffee-card {
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
-/* Heading inside a card */
-.coffee-cards > * h3 {
-  margin: 0 0 8px;
-  color: var(--text-h);
-  font-size: 1.25rem;
+/* Optional: ensure cards don’t stretch their content */
+.coffee-card > * {
+  margin: 0 0 0.5rem 0;
 }
 
-/* Description inside a card */
-.coffee-cards > * p {
-  flex-grow: 1;
-  margin: 0 0 12px;
-  color: var(--text);
-}
-
-/* Add-button inside a card */
-.coffee-cards > * button {
-  align-self: flex-end;
-  padding: 8px 12px;
-  font-size: 1rem;
-  background: var(--accent-bg);
-  border: 2px solid var(--accent-border);
-  border-radius: 4px;
-  color: var(--accent);
-  cursor: pointer;
-  transition: background 0.3s, border-color 0.3s, color 0.3s;
-}
-
-.coffee-cards > * button:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  color: #fff;
+/* Small adjustments for very small screens */
+@media (max-width: 480px) {
+  .coffee-cards {
+    gap: 1rem;
+    padding: 0.5rem;
+  }
+  .coffee-card {
+    padding: 0.75rem;
+  }
 }
