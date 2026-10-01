@@ -1,35 +1,83 @@
+/* Container for filters and product cards */
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
   padding: 16px;
-  margin: 0 auto;
   box-sizing: border-box;
 }
 
+/* Individual product card */
 .product-card {
-  box-sizing: border-box;
-  background-color: var(--bg);
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
   padding: 16px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px;
   display: flex;
   flex-direction: column;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Hover effect for cards */
+.product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px;
+}
+
+/* Image or icon inside card */
+.product-card img,
+.product-card .product-icon {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+/* Title inside card */
+.product-card h3 {
+  margin: 0 0 8px;
+  font-size: 1.1rem;
+  color: var(--text-h);
+}
+
+/* Description inside card */
+.product-card p {
+  flex-grow: 1;
+  margin: 0 0 12px;
+  color: var(--text);
+  font-size: 0.95rem;
+}
+
+/* Footer of card (price, actions) */
+.product-card .card-footer {
+  display: flex;
   justify-content: space-between;
-  box-shadow: var(--shadow);
+  align-items: center;
+  margin-top: auto;
 }
 
-/* Ensure filters or other direct children above cards keep full width */
-.products-container > .filters {
-  grid-column: 1 / -1;
-  margin-bottom: 16px;
+/* Add-to-inventory icon/button */
+.product-card .add-icon {
+  cursor: pointer;
+  color: var(--accent);
+  font-size: 1.2rem;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background 0.2s;
+}
+.product-card .add-icon:hover {
+  background: var(--accent-bg);
 }
 
-/* Responsive tweaks */
-@media (max-width: 600px) {
+/* Responsive adjustments */
+@media (max-width: 768px) {
   .products-container {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     padding: 12px;
     gap: 12px;
+  }
+  .product-card {
+    padding: 12px;
   }
 }
