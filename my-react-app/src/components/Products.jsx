@@ -2,47 +2,50 @@ import React, { useState } from 'react'
 import CoffeeCards from './CoffeeCards.jsx'
 import './Products.css'
 
-const allProducts = [
-  { id: 1, name: 'Espresso', description: 'A strong, full-flavored coffee.', price: 2.5, tags: ['Espresso'] },
-  { id: 2, name: 'Latte', description: 'Smooth espresso with steamed milk.', price: 3.5, tags: ['Milk', 'Espresso'] },
-  { id: 3, name: 'Cappuccino', description: 'Espresso, steamed milk, and foam.', price: 3.0, tags: ['Milk', 'Espresso'] },
-  { id: 4, name: 'Americano', description: 'Espresso with hot water.', price: 2.75, tags: ['Espresso'] },
-  { id: 5, name: 'Mocha', description: 'Chocolate, espresso, and steamed milk.', price: 4.0, tags: ['Chocolate', 'Milk', 'Espresso'] },
-  // add more products as needed
+const PRODUCTS = [
+  { id: 1, name: 'Espresso', category: 'espresso', price: 2.5 },
+  { id: 2, name: 'Latte', category: 'latte', price: 3.2 },
+  { id: 3, name: 'Cappuccino', category: 'cappuccino', price: 3.0 },
+  { id: 4, name: 'Americano', category: 'americano', price: 2.0 },
+  { id: 5, name: 'Mocha', category: 'mocha', price: 3.5 },
+  { id: 6, name: 'Flat White', category: 'latte', price: 3.0 },
 ]
 
-const availableTags = ['All', 'Espresso', 'Milk', 'Chocolate']
+const CATEGORIES = ['all', 'espresso', 'latte', 'cappuccino', 'americano', 'mocha']
 
 export default function Products() {
-  const [selectedTag, setSelectedTag] = useState('All')
+  const [filter, setFilter] = useState('all')
 
-  const filtered = selectedTag === 'All'
-    ? allProducts
-    : allProducts.filter(p => p.tags.includes(selectedTag))
+  const filteredProducts =
+    filter === 'all'
+      ? PRODUCTS
+      : PRODUCTS.filter((p) => p.category === filter)
+
+  const handleAdd = (product) => {
+    // implement adding to inventory (e.g. via context or callback)
+    console.log(`Add to inventory:`, product)
+  }
 
   return (
     <div className="products-page">
-      <h2>Our Coffee Selection</h2>
+      <h2>Our Products</h2>
       <div className="products-filters">
-        {availableTags.map(tag => (
+        {CATEGORIES.map((cat) => (
           <button
-            key={tag}
-            className={tag === selectedTag ? 'active' : ''}
-            onClick={() => setSelectedTag(tag)}
+            key={cat}
+            className={filter === cat ? 'active' : ''}
+            onClick={() => setFilter(cat)}
           >
-            {tag}
+            {cat.charAt(0).toUpperCase() + cat.slice(1)}
           </button>
         ))}
       </div>
       <div className="products-grid">
-        {filtered.map(product => (
+        {filteredProducts.map((product) => (
           <CoffeeCards
             key={product.id}
-            id={product.id}
-            name={product.name}
-            description={product.description}
-            price={product.price}
-            tags={product.tags}
+            product={product}
+            onAdd={() => handleAdd(product)}
           />
         ))}
       </div>
