@@ -1,93 +1,46 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
+import CoffeeCards from './CoffeeCards.jsx'
 import './Products.css'
 
-const initialProducts = [
-  { id: 1, name: 'Espresso', category: 'Coffee', price: 2.5 },
-  { id: 2, name: 'Cappuccino', category: 'Coffee', price: 3.5 },
-  { id: 3, name: 'Latte', category: 'Coffee', price: 3.0 },
-  { id: 4, name: 'Mocha', category: 'Coffee', price: 3.75 },
-  { id: 5, name: 'Americano', category: 'Coffee', price: 2.75 },
-  { id: 6, name: 'Croissant', category: 'Pastry', price: 2.0 },
-  { id: 7, name: 'Muffin', category: 'Pastry', price: 2.5 },
-  { id: 8, name: 'Bagel', category: 'Bakery', price: 1.5 },
-  { id: 9, name: 'Tea', category: 'Beverage', price: 2.0 },
-  { id: 10, name: 'Hot Chocolate', category: 'Beverage', price: 2.75 }
-]
-
 function Products() {
-  const [products] = useState(initialProducts)
-  const [filteredProducts, setFilteredProducts] = useState(initialProducts)
-  const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('All')
-
-  const categories = ['All', ...Array.from(new Set(initialProducts.map(p => p.category)))]
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
 
   useEffect(() => {
-    let result = products
-    if (search.trim() !== '') {
-      result = result.filter(p =>
-        p.name.toLowerCase().includes(search.trim().toLowerCase())
-      )
+    async function fetchProducts() {
+      try {
+        const res = await fetch('http://localhost:5000/products')
+        if (!res.ok) {
+          throw new Error(`Error fetching products: ${res.statusText}`)
+        }
+        const data = await res.json()
+        setProducts(data)
+      } catch (err) {
+        setError(err.message)
+      } finally {
+        setLoading(false)
+      }
     }
-    if (category !== 'All') {
-      result = result.filter(p => p.category === category)
-    }
-    setFilteredProducts(result)
-  }, [search, category, products])
+    fetchProducts()
+  }, [])
 
-  const handleAdd = product => {
-    const existing = JSON.parse(localStorage.getItem('inventory')) || []
-    if (!existing.find(item => item.id === product.id)) {
-      localStorage.setItem(
-        'inventory',
-        JSON.stringify([...existing, product])
-      )
-      // optionally give feedback
-    }
+  if (loading) {
+    return <p>Loading products...</p>
+  }
+
+  if (error) {
+    return <p style={{ color: 'red' }}>{error}</p>
   }
 
   return (
-    <div className="products-container">
-      <h2>All Products</h2>
-      <div className="filters">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-        <select
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-        >
-          {categories.map(cat => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
-      </div>
+    <div className="products-page">
+      <h2>All Offered Products</h2>
+      {/* You can add filter controls here */}
       <div className="products-grid">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => (
-            <div className="product-card" key={product.id}>
-              <div className="product-info">
-                <h3>{product.name}</h3>
-                <p className="category">{product.category}</p>
-                <p className="price">${product.price.toFixed(2)}</p>
-              </div>
-              <button
-                className="add-btn"
-                aria-label={`Add ${product.name} to inventory`}
-                onClick={() => handleAdd(product)}
-              >
-                +
-              </button>
-            </div>
-          ))
-        ) : (
-          <p className="no-results">No products found</p>
-        )}
+        {products.map((product) => (
+          <CoffeeCards key={product.id} product={product} />
+        ))}
       </div>
     </div>
   )
