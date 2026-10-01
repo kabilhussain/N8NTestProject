@@ -1,75 +1,53 @@
+/* my-react-app/src/components/CoffeeCards.css */
+
 .coffee-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 32px 16px;
-  margin: 0 auto;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  padding: 1.5rem;
 }
 
 .coffee-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s;
-}
-
-.coffee-card:hover {
-  transform: translateY(-4px);
+  background-color: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
 }
 
 .coffee-card img {
   width: 100%;
-  height: 180px;
+  height: auto;
+  border-radius: 4px;
   object-fit: cover;
+  margin-bottom: 0.75rem;
 }
 
-.coffee-card-content {
-  padding: 16px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.coffee-type {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.coffee-name {
-  font-size: 20px;
-  margin: 0 0 8px;
+.coffee-card h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
   color: var(--text-h);
 }
 
-.coffee-description {
-  font-size: 14px;
+.coffee-card p {
+  flex-grow: 1;
+  margin: 0 0 1rem;
   color: var(--text);
-  margin: 0;
-  flex: 1;
 }
 
-@media (max-width: 1024px) {
-  .coffee-cards {
-    padding: 24px 12px;
-  }
-  .coffee-card img {
-    height: 160px;
-  }
+.coffee-card button {
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background-color 0.2s;
 }
 
-@media (max-width: 600px) {
-  .coffee-cards {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .coffee-card img {
-    height: 140px;
-  }
+.coffee-card button:hover {
+  background-color: var(--accent-border);
 }

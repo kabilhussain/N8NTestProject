@@ -1,77 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import CoffeeCards from './CoffeeCards'
+import './Products.css'
 
 export default function Inventory() {
-  const [orderPlaced, setOrderPlaced] = useState(false)
+  const [products, setProducts] = useState([])
+  const [loading, setLoading] = useState(true)
 
-  const products = [
-    { id: 1, name: 'Espresso', quantity: 2 },
-    { id: 2, name: 'Latte', quantity: 1 },
-    { id: 3, name: 'Cappuccino', quantity: 3 },
-  ]
+  useEffect(() => {
+    // fetch all offered products
+    fetch('http://localhost:3000/products')
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(err => console.error('Failed to fetch products:', err))
+      .finally(() => setLoading(false))
+  }, [])
 
-  const handlePlaceOrder = () => {
-    setOrderPlaced(true)
+  if (loading) {
+    return <p>Loading products...</p>
   }
 
-  const listStyle = {
-    listStyle: 'none',
-    padding: 0,
-    maxWidth: '400px',
-    margin: '16px auto',
-  }
-
-  const itemStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    padding: '8px 12px',
-    borderBottom: '1px solid var(--border)',
-  }
-
-  const buttonStyle = {
-    padding: '10px 20px',
-    fontSize: '16px',
-    background: 'var(--accent)',
-    color: '#fff',
-    border: 'none',
-    borderRadius: '4px',
-    cursor: 'pointer',
-    marginTop: '16px',
+  if (!products.length) {
+    return <p>No products available.</p>
   }
 
   return (
-    <div style={{ padding: '24px', textAlign: 'center' }}>
-      {!orderPlaced ? (
-        <>
-          <h2>Your Inventory</h2>
-          <ul style={listStyle}>
-            {products.map((prod) => (
-              <li key={prod.id} style={itemStyle}>
-                <span>{prod.name}</span>
-                <span>Qty: {prod.quantity}</span>
-              </li>
-            ))}
-          </ul>
-          <button style={buttonStyle} onClick={handlePlaceOrder}>
-            Place Order
-          </button>
-        </>
-      ) : (
-        <>
-          <h2>Order Getting Prepared</h2>
-          <ul style={listStyle}>
-            {products.map((prod) => (
-              <li key={prod.id} style={itemStyle}>
-                <span>
-                  {prod.name} x {prod.quantity}
-                </span>
-                <span style={{ fontStyle: 'italic', color: 'var(--accent)' }}>
-                  In Progress
-                </span>
-              </li>
-            ))}
-          </ul>
-        </>
-      )}
-    </div>
+    <section className="inventory">
+      <h2>Available Products</h2>
+      {/* filters component could go here if needed */}
+      <div className="products-grid">
+        {products.map(product => (
+          <CoffeeCards
+            key={product.id}
+            product={product}
+            onAdd={() => {
+              // handle add-to-inventory action
+              // e.g. call API or update state
+            }}
+          />
+        ))}
+      </div>
+    </section>
   )
 }
