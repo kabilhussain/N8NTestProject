@@ -1,46 +1,47 @@
-/* Add padding around the products page */
-.products {
-  padding: 24px;
-}
-
-/* Grid layout for product cards – adjusts to show 2–3 cards per row */
-.products .products-grid,
-.products .cards,
-.products .product-list,
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
-}
-
-/* Card spacing and basic styling */
-.products .product-card,
-.products .card,
-.products .product-item,
-.card {
   padding: 16px;
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background-color: var(--bg);
   box-sizing: border-box;
 }
 
-/* Responsive tweaks for smaller screens */
-@media (max-width: 768px) {
-  .products {
-    padding: 16px;
-  }
-  .products .products-grid,
-  .products .cards,
-  .products .product-list,
-  .products-container {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
-  }
-  .products .product-card,
-  .products .card,
-  .products .product-item,
-  .card {
-    padding: 12px;
-  }
+.product-card {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.product-card img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 12px;
+  border-radius: 4px;
+}
+
+.product-card h3,
+.product-card p {
+  margin: 8px 0;
+}
+
+.product-card button {
+  margin-top: auto;
+  background: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.product-card button:hover {
+  background: var(--accent-border);
 }
