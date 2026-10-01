@@ -1,10 +1,13 @@
+/* Container for all coffee cards */
 .coffee-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 16px;
   padding: 16px;
+  box-sizing: border-box;
 }
 
+/* Individual coffee card */
 .coffee-card {
   box-sizing: border-box;
   padding: 16px;
@@ -13,34 +16,44 @@
   border-radius: 8px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: box-shadow 0.2s;
 }
 
+/* Hover effect */
+.coffee-card:hover {
+  box-shadow: var(--shadow);
+}
+
+/* Image inside the card */
+.coffee-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+/* Title inside the card */
 .coffee-card h3 {
-  margin: 0 0 8px;
+  margin: 8px 0;
   color: var(--text-h);
+  font-size: 1.1rem;
 }
 
+/* Description/text inside the card */
 .coffee-card p {
-  margin: 0 0 16px;
+  margin: 8px 0;
   color: var(--text);
+  font-size: 0.9rem;
   flex-grow: 1;
 }
 
-.coffee-card button {
-  align-self: flex-end;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 32px;
-  height: 32px;
+/* Add-to-inventory icon/button */
+.coffee-card .add-icon,
+.coffee-card .add-button {
+  margin-top: 12px;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s;
-}
-
-.coffee-card button:hover {
-  background: var(--accent-border);
+  color: var(--accent);
+  font-size: 1.2rem;
 }
