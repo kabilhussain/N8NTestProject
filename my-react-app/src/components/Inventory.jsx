@@ -1,63 +1,44 @@
 import React, { useState, useEffect } from 'react'
-import CoffeeCards from './CoffeeCards.jsx'
-import './CoffeeCards.css'
+import CoffeeCards from './CoffeeCards'
 import './Products.css'
 
-function Inventory() {
+export default function Inventory() {
   const [products, setProducts] = useState([])
-  const [filters, setFilters] = useState({ category: 'all', search: '' })
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // fetch or load your product list here
-    // for example:
-    // fetch('/api/products').then(res => res.json()).then(data => setProducts(data))
-    // or load from static file / context
+    // fetch all offered products
+    fetch('http://localhost:3000/products')
+      .then(res => res.json())
+      .then(data => setProducts(data))
+      .catch(err => console.error('Failed to fetch products:', err))
+      .finally(() => setLoading(false))
   }, [])
 
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target
-    setFilters(prev => ({ ...prev, [name]: value }))
+  if (loading) {
+    return <p>Loading products...</p>
   }
 
-  const filteredProducts = products.filter(p => {
-    const matchesCategory = filters.category === 'all' || p.category === filters.category
-    const matchesSearch = p.name.toLowerCase().includes(filters.search.toLowerCase())
-    return matchesCategory && matchesSearch
-  })
-
-  const handleAddToInventory = (product) => {
-    // your logic to add the product into inventory
+  if (!products.length) {
+    return <p>No products available.</p>
   }
 
   return (
-    <main className="inventory-page">
-      <h1>Inventory</h1>
-      <div className="filters">
-        <input
-          type="text"
-          name="search"
-          placeholder="Search products..."
-          value={filters.search}
-          onChange={handleFilterChange}
-        />
-        <select name="category" value={filters.category} onChange={handleFilterChange}>
-          <option value="all">All</option>
-          <option value="coffee">Coffee</option>
-          <option value="tea">Tea</option>
-          {/* add more categories as needed */}
-        </select>
-      </div>
+    <section className="inventory">
+      <h2>Available Products</h2>
+      {/* filters component could go here if needed */}
       <div className="products-grid">
-        {filteredProducts.map(product => (
+        {products.map(product => (
           <CoffeeCards
             key={product.id}
             product={product}
-            onAdd={() => handleAddToInventory(product)}
+            onAdd={() => {
+              // handle add-to-inventory action
+              // e.g. call API or update state
+            }}
           />
         ))}
       </div>
-    </main>
+    </section>
   )
 }
-
-export default Inventory
