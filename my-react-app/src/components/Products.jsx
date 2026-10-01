@@ -1,96 +1,51 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import CoffeeCards from './CoffeeCards.jsx'
 import './Products.css'
 
-const initialProducts = [
-  { id: 1, name: 'Espresso', category: 'Coffee', price: 2.5 },
-  { id: 2, name: 'Cappuccino', category: 'Coffee', price: 3.5 },
-  { id: 3, name: 'Latte', category: 'Coffee', price: 3.0 },
-  { id: 4, name: 'Mocha', category: 'Coffee', price: 3.75 },
-  { id: 5, name: 'Americano', category: 'Coffee', price: 2.75 },
-  { id: 6, name: 'Croissant', category: 'Pastry', price: 2.0 },
-  { id: 7, name: 'Muffin', category: 'Pastry', price: 2.5 },
-  { id: 8, name: 'Bagel', category: 'Bakery', price: 1.5 },
-  { id: 9, name: 'Tea', category: 'Beverage', price: 2.0 },
-  { id: 10, name: 'Hot Chocolate', category: 'Beverage', price: 2.75 }
+const allProducts = [
+  { id: 1, name: 'Espresso', description: 'A strong, full-flavored coffee.', price: 2.5, tags: ['Espresso'] },
+  { id: 2, name: 'Latte', description: 'Smooth espresso with steamed milk.', price: 3.5, tags: ['Milk', 'Espresso'] },
+  { id: 3, name: 'Cappuccino', description: 'Espresso, steamed milk, and foam.', price: 3.0, tags: ['Milk', 'Espresso'] },
+  { id: 4, name: 'Americano', description: 'Espresso with hot water.', price: 2.75, tags: ['Espresso'] },
+  { id: 5, name: 'Mocha', description: 'Chocolate, espresso, and steamed milk.', price: 4.0, tags: ['Chocolate', 'Milk', 'Espresso'] },
+  // add more products as needed
 ]
 
-function Products() {
-  const [products] = useState(initialProducts)
-  const [filteredProducts, setFilteredProducts] = useState(initialProducts)
-  const [search, setSearch] = useState('')
-  const [category, setCategory] = useState('All')
+const availableTags = ['All', 'Espresso', 'Milk', 'Chocolate']
 
-  const categories = ['All', ...Array.from(new Set(initialProducts.map(p => p.category)))]
+export default function Products() {
+  const [selectedTag, setSelectedTag] = useState('All')
 
-  useEffect(() => {
-    let result = products
-    if (search.trim() !== '') {
-      result = result.filter(p =>
-        p.name.toLowerCase().includes(search.trim().toLowerCase())
-      )
-    }
-    if (category !== 'All') {
-      result = result.filter(p => p.category === category)
-    }
-    setFilteredProducts(result)
-  }, [search, category, products])
-
-  const handleAdd = product => {
-    const existing = JSON.parse(localStorage.getItem('inventory')) || []
-    if (!existing.find(item => item.id === product.id)) {
-      localStorage.setItem(
-        'inventory',
-        JSON.stringify([...existing, product])
-      )
-      // optionally give feedback
-    }
-  }
+  const filtered = selectedTag === 'All'
+    ? allProducts
+    : allProducts.filter(p => p.tags.includes(selectedTag))
 
   return (
-    <div className="products-container">
-      <h2>All Products</h2>
-      <div className="filters">
-        <input
-          type="text"
-          placeholder="Search products..."
-          value={search}
-          onChange={e => setSearch(e.target.value)}
-        />
-        <select
-          value={category}
-          onChange={e => setCategory(e.target.value)}
-        >
-          {categories.map(cat => (
-            <option key={cat} value={cat}>
-              {cat}
-            </option>
-          ))}
-        </select>
+    <div className="products-page">
+      <h2>Our Coffee Selection</h2>
+      <div className="products-filters">
+        {availableTags.map(tag => (
+          <button
+            key={tag}
+            className={tag === selectedTag ? 'active' : ''}
+            onClick={() => setSelectedTag(tag)}
+          >
+            {tag}
+          </button>
+        ))}
       </div>
       <div className="products-grid">
-        {filteredProducts.length > 0 ? (
-          filteredProducts.map(product => (
-            <div className="product-card" key={product.id}>
-              <div className="product-info">
-                <h3>{product.name}</h3>
-                <p className="category">{product.category}</p>
-                <p className="price">${product.price.toFixed(2)}</p>
-              </div>
-              <button
-                className="add-btn"
-                aria-label={`Add ${product.name} to inventory`}
-                onClick={() => handleAdd(product)}
-              >
-                +
-              </button>
-            </div>
-          ))
-        ) : (
-          <p className="no-results">No products found</p>
-        )}
+        {filtered.map(product => (
+          <CoffeeCards
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            description={product.description}
+            price={product.price}
+            tags={product.tags}
+          />
+        ))}
       </div>
     </div>
   )
 }
-
-export default Products
