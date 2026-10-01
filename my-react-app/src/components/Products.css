@@ -1,64 +1,49 @@
+/* Responsive grid layout for products */
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
   padding: 16px;
+  box-sizing: border-box;
 }
 
+/* Individual product card spacing */
 .product-card {
   padding: 16px;
-  background-color: var(--bg);
+  box-sizing: border-box;
+  background: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
-  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
+  justify-content: space-between;
 }
 
+/* Ensure images inside cards scale to their container */
 .product-card img {
-  max-width: 100%;
+  width: 100%;
   height: auto;
+  display: block;
   margin-bottom: 12px;
-  border-radius: 4px;
 }
 
-.product-card h3 {
-  margin: 8px 0;
-  color: var(--text-h);
-  font-size: 1.1rem;
+/* Adjust filters area separation */
+.products-filters {
+  padding: 16px;
+  margin-bottom: 8px;
 }
 
-.product-card p {
-  margin: 4px 0 12px;
-  color: var(--text);
-  font-size: 0.95rem;
-}
-
-.product-card .add-button {
-  margin-top: auto;
-  padding: 8px 12px;
-  background-color: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background-color 0.3s;
-}
-
-.product-card .add-button:hover {
-  background-color: var(--accent-border);
-}
-
+/* Smaller screens adjustments */
 @media (max-width: 768px) {
   .products-container {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
     gap: 16px;
     padding: 12px;
   }
   .product-card {
+    padding: 12px;
+  }
+  .products-filters {
     padding: 12px;
   }
 }
