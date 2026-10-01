@@ -1,33 +1,69 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import CoffeeCards from './CoffeeCards.jsx'
 import './Products.css'
 
 export default function Products() {
   const [products, setProducts] = useState([])
-  const [filters, setFilters] = useState({
-    search: '',
-    category: 'all',
-    priceRange: [0, Infinity]
-  })
+  const [searchTerm, setSearchTerm] = useState('')
+  const [selectedCategory, setSelectedCategory] = useState('All')
 
   useEffect(() => {
-    // existing logic to load and filter products goes here
-    // e.g. fetch('/api/products').then(r=>r.json()).then(data=>setProducts(applyFilters(data, filters)))
-  }, [filters])
+    fetch('http://localhost:3000/products')
+      .then((res) => res.json())
+      .then((data) => setProducts(data))
+      .catch((err) => console.error('Failed to fetch products:', err))
+  }, [])
+
+  const categories = ['All', ...new Set(products.map((p) => p.category))]
+
+  const filteredProducts = products.filter((product) => {
+    const matchesCategory =
+      selectedCategory === 'All' || product.category === selectedCategory
+    const matchesSearch = product.name
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
+
+  const handleAddToInventory = (product) => {
+    // Add to inventory logic (e.g., POST to /inventory)
+    fetch('http://localhost:3000/inventory', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(product),
+    }).catch((err) => console.error('Failed to add to inventory:', err))
+  }
 
   return (
-    <main className="products-page">
-      <h1>Our Coffee Selection</h1>
-      {/* existing filter controls */}
+    <section className="products">
+      <h2>Our Products</h2>
+      <div className="products-filters">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <select
+          value={selectedCategory}
+          onChange={(e) => setSelectedCategory(e.target.value)}
+        >
+          {categories.map((cat) => (
+            <option key={cat} value={cat}>
+              {cat}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="products-grid">
-        {products.map(product => (
+        {filteredProducts.map((product) => (
           <CoffeeCards
             key={product.id}
             product={product}
-            onAdd={() => {/* add to inventory logic */}}
+            onAdd={() => handleAddToInventory(product)}
           />
         ))}
       </div>
-    </main>
+    </section>
   )
 }
