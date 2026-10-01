@@ -1,65 +1,62 @@
 import React, { useState, useEffect } from 'react'
-import './Products.css'
 import CoffeeCards from './CoffeeCards.jsx'
+import './CoffeeCards.css'
+import './Products.css'
 
 function Inventory() {
   const [products, setProducts] = useState([])
-  const [filter, setFilter] = useState('All')
-  const [inventory, setInventory] = useState([])
+  const [filters, setFilters] = useState({ category: 'all', search: '' })
 
   useEffect(() => {
-    // load all shop products
-    fetch('/api/products')
-      .then((res) => res.json())
-      .then((data) => setProducts(data))
-      .catch((err) => console.error(err))
-    // load existing inventory from localStorage
-    const stored = JSON.parse(localStorage.getItem('inventory') || '[]')
-    setInventory(stored)
+    // fetch or load your product list here
+    // for example:
+    // fetch('/api/products').then(res => res.json()).then(data => setProducts(data))
+    // or load from static file / context
   }, [])
 
-  const filtered = filter === 'All'
-    ? products
-    : products.filter((p) => p.category === filter)
-
-  const addToInventory = (product) => {
-    if (inventory.find((i) => i.id === product.id)) return
-    const next = [...inventory, product]
-    setInventory(next)
-    localStorage.setItem('inventory', JSON.stringify(next))
+  const handleFilterChange = (e) => {
+    const { name, value } = e.target
+    setFilters(prev => ({ ...prev, [name]: value }))
   }
 
-  const categories = ['All', ...new Set(products.map((p) => p.category))]
+  const filteredProducts = products.filter(p => {
+    const matchesCategory = filters.category === 'all' || p.category === filters.category
+    const matchesSearch = p.name.toLowerCase().includes(filters.search.toLowerCase())
+    return matchesCategory && matchesSearch
+  })
+
+  const handleAddToInventory = (product) => {
+    // your logic to add the product into inventory
+  }
 
   return (
-    <section className="inventory">
-      <h1>Shop & Add to Inventory</h1>
+    <main className="inventory-page">
+      <h1>Inventory</h1>
       <div className="filters">
-        {categories.map((cat) => (
-          <button
-            key={cat}
-            className={cat === filter ? 'active' : ''}
-            onClick={() => setFilter(cat)}
-          >
-            {cat}
-          </button>
-        ))}
+        <input
+          type="text"
+          name="search"
+          placeholder="Search products..."
+          value={filters.search}
+          onChange={handleFilterChange}
+        />
+        <select name="category" value={filters.category} onChange={handleFilterChange}>
+          <option value="all">All</option>
+          <option value="coffee">Coffee</option>
+          <option value="tea">Tea</option>
+          {/* add more categories as needed */}
+        </select>
       </div>
       <div className="products-grid">
-        {filtered.map((product) => (
-          <div key={product.id} className="product-card">
-            <CoffeeCards product={product} />
-            <button
-              className="add-button"
-              aria-label={`Add ${product.name}`}
-              onClick={() => addToInventory(product)}
-            >
-              +
-            </button>
-          </div>
+        {filteredProducts.map(product => (
+          <CoffeeCards
+            key={product.id}
+            product={product}
+            onAdd={() => handleAddToInventory(product)}
+          />
         ))}
       </div>
-    </section>
+    </main>
   )
 }
 
