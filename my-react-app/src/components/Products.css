@@ -1,49 +1,46 @@
-/* Responsive grid layout for products */
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 24px;
   padding: 16px;
-  box-sizing: border-box;
 }
 
-/* Individual product card spacing */
 .product-card {
-  padding: 16px;
-  box-sizing: border-box;
-  background: var(--bg);
+  background-color: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 
-/* Ensure images inside cards scale to their container */
 .product-card img {
-  width: 100%;
+  max-width: 100%;
   height: auto;
-  display: block;
+  border-radius: 4px;
   margin-bottom: 12px;
 }
 
-/* Adjust filters area separation */
-.products-filters {
-  padding: 16px;
-  margin-bottom: 8px;
+.product-card h3,
+.product-card h4,
+.product-card p {
+  margin: 0 0 8px;
 }
 
-/* Smaller screens adjustments */
+.product-card .product-info {
+  flex-grow: 1;
+}
+
+.product-card .add-button,
+.product-card .add-icon {
+  align-self: flex-end;
+  margin-top: 12px;
+  cursor: pointer;
+}
+
 @media (max-width: 768px) {
   .products-container {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 16px;
-    padding: 12px;
-  }
-  .product-card {
-    padding: 12px;
-  }
-  .products-filters {
-    padding: 12px;
+    grid-template-columns: 1fr;
   }
 }
