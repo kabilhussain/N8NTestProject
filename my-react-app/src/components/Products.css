@@ -1,83 +1,46 @@
-/* Container for filters and product cards */
+/* Add padding around the products page */
+.products {
+  padding: 24px;
+}
+
+/* Grid layout for product cards – adjusts to show 2–3 cards per row */
+.products .products-grid,
+.products .cards,
+.products .product-list,
 .products-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+/* Card spacing and basic styling */
+.products .product-card,
+.products .card,
+.products .product-item,
+.card {
   padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background-color: var(--bg);
   box-sizing: border-box;
 }
 
-/* Individual product card */
-.product-card {
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 16px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0 2px 4px;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-
-/* Hover effect for cards */
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: rgba(0, 0, 0, 0.1) 0 4px 8px;
-}
-
-/* Image or icon inside card */
-.product-card img,
-.product-card .product-icon {
-  max-width: 100%;
-  height: auto;
-  margin-bottom: 12px;
-  border-radius: 4px;
-}
-
-/* Title inside card */
-.product-card h3 {
-  margin: 0 0 8px;
-  font-size: 1.1rem;
-  color: var(--text-h);
-}
-
-/* Description inside card */
-.product-card p {
-  flex-grow: 1;
-  margin: 0 0 12px;
-  color: var(--text);
-  font-size: 0.95rem;
-}
-
-/* Footer of card (price, actions) */
-.product-card .card-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: auto;
-}
-
-/* Add-to-inventory icon/button */
-.product-card .add-icon {
-  cursor: pointer;
-  color: var(--accent);
-  font-size: 1.2rem;
-  padding: 4px;
-  border-radius: 4px;
-  transition: background 0.2s;
-}
-.product-card .add-icon:hover {
-  background: var(--accent-bg);
-}
-
-/* Responsive adjustments */
+/* Responsive tweaks for smaller screens */
 @media (max-width: 768px) {
-  .products-container {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    padding: 12px;
-    gap: 12px;
+  .products {
+    padding: 16px;
   }
-  .product-card {
+  .products .products-grid,
+  .products .cards,
+  .products .product-list,
+  .products-container {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .products .product-card,
+  .products .card,
+  .products .product-item,
+  .card {
     padding: 12px;
   }
 }
