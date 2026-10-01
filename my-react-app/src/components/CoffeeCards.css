@@ -1,43 +1,4 @@
 .coffee-card {
   box-sizing: border-box;
-  flex: 1 1 300px;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
   padding: 16px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-}
-
-.coffee-card-image {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 4px;
-  margin-bottom: 12px;
-}
-
-.coffee-card-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.coffee-card-button {
-  align-self: flex-end;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  width: 32px;
-  height: 32px;
-  font-size: 20px;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.coffee-card-button:hover {
-  background: var(--accent-border);
 }
