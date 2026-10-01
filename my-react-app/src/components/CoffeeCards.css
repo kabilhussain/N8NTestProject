@@ -1,75 +1,62 @@
 .coffee-cards {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 32px 16px;
-  margin: 0 auto;
+  gap: 1rem;
+  padding: 1rem;
+  box-sizing: border-box;
 }
 
 .coffee-card {
-  background: var(--bg);
+  background-color: var(--bg);
   border: 1px solid var(--border);
   border-radius: 8px;
-  overflow: hidden;
   box-shadow: var(--shadow);
+  padding: 1rem;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  transition: transform 0.3s;
-}
-
-.coffee-card:hover {
-  transform: translateY(-4px);
 }
 
 .coffee-card img {
   width: 100%;
-  height: 180px;
-  object-fit: cover;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
 }
 
-.coffee-card-content {
-  padding: 16px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-}
-
-.coffee-type {
-  font-size: 12px;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 8px;
-}
-
-.coffee-name {
-  font-size: 20px;
-  margin: 0 0 8px;
+.coffee-card h3 {
+  margin: 0 0 0.5rem;
   color: var(--text-h);
+  font-size: 1.25rem;
 }
 
-.coffee-description {
-  font-size: 14px;
+.coffee-card p {
+  flex-grow: 1;
+  margin: 0 0 1rem;
   color: var(--text);
-  margin: 0;
-  flex: 1;
+  line-height: 1.4;
 }
 
-@media (max-width: 1024px) {
-  .coffee-cards {
-    padding: 24px 12px;
-  }
-  .coffee-card img {
-    height: 160px;
-  }
+.coffee-card button {
+  align-self: flex-end;
+  background-color: var(--accent);
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 2rem;
+  height: 2rem;
+  cursor: pointer;
+  font-size: 1.25rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .coffee-cards {
-    grid-template-columns: 1fr;
-    gap: 16px;
-  }
-  .coffee-card img {
-    height: 140px;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    padding: 0.5rem;
+    gap: 0.75rem;
   }
 }
