@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "name": "Espresso",
+    "description": "A strong and bold coffee shot made by forcing hot water through finely ground coffee beans.",
+    "price": 2.50,
+    "image": "https://source.unsplash.com/400x400/?espresso"
+  },
+  {
+    "id": 2,
+    "name": "Americano",
+    "description": "Espresso diluted with hot water for a smooth and rich coffee experience.",
+    "price": 3.00,
+    "image": "https://source.unsplash.com/400x400/?americano"
+  },
+  {
+    "id": 3,
+    "name": "Cappuccino",
+    "description": "Espresso with steamed milk and a thick layer of foam to create a creamy texture.",
+    "price": 4.25,
+    "image": "https://source.unsplash.com/400x400/?cappuccino"
+  },
+  {
+    "id": 4,
+    "name": "Latte",
+    "description": "A creamy blend of espresso and steamed milk, topped with a thin layer of foam.",
+    "price": 4.00,
+    "image": "https://source.unsplash.com/400x400/?latte"
+  },
+  {
+    "id": 5,
+    "name": "Mocha",
+    "description": "A delightful mix of espresso, steamed milk, and chocolate, perfect for sweet coffee lovers.",
+    "price": 4.75,
+    "image": "https://source.unsplash.com/400x400/?mocha-coffee"
+  }
+]
