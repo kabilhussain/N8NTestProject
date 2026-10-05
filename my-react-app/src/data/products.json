@@ -1,1 +1,44 @@
-[{"id":1,"name":"Espresso","description":"Strong and bold classic espresso shot.","price":2.5,"image":"https://source.unsplash.com/featured/?espresso"},{"id":2,"name":"Americano","description":"Espresso diluted with hot water for a smooth taste.","price":3.0,"image":"https://source.unsplash.com/featured/?americano-coffee"},{"id":3,"name":"Cappuccino","description":"Espresso with steamed milk foam.","price":3.5,"image":"https://source.unsplash.com/featured/?cappuccino"},{"id":4,"name":"Latte","description":"Espresso with steamed milk and light foam.","price":4.0,"image":"https://source.unsplash.com/featured/?latte"},{"id":5,"name":"Mocha","description":"Chocolate flavored coffee with steamed milk.","price":4.5,"image":"https://source.unsplash.com/featured/?mocha-coffee"},{"id":6,"name":"Flat White","description":"Espresso with velvety microfoam.","price":4.0,"image":"https://source.unsplash.com/featured/?flat-white"},{"id":7,"name":"Macchiato","description":"Espresso topped with a dollop of milk foam.","price":3.0,"image":"https://source.unsplash.com/featured/?macchiato"},{"id":8,"name":"Cold Brew","description":"Slow-steeped cold coffee for a smooth finish.","price":4.5,"image":"https://source.unsplash.com/featured/?cold-brew"},{"id":9,"name":"Iced Latte","description":"Chilled espresso with milk over ice.","price":4.0,"image":"https://source.unsplash.com/featured/?iced-latte"},{"id":10,"name":"Caramel Frappé","description":"Blended coffee with caramel syrup and ice.","price":5.0,"image":"https://source.unsplash.com/featured/?frappe"}]
+[
+  {
+    "id": 1,
+    "name": "Espresso",
+    "description": "A rich and bold shot of pure coffee flavor.",
+    "price": 2.50,
+    "image": "https://source.unsplash.com/600x400/?espresso,coffee"
+  },
+  {
+    "id": 2,
+    "name": "Cappuccino",
+    "description": "Espresso blended with steamed milk and topped with airy foam.",
+    "price": 3.75,
+    "image": "https://source.unsplash.com/600x400/?cappuccino,coffee"
+  },
+  {
+    "id": 3,
+    "name": "Latte",
+    "description": "Smooth espresso combined with steamed milk and a light layer of foam.",
+    "price": 4.25,
+    "image": "https://source.unsplash.com/600x400/?latte,coffee"
+  },
+  {
+    "id": 4,
+    "name": "Americano",
+    "description": "Classic espresso diluted with hot water for a milder flavor.",
+    "price": 3.00,
+    "image": "https://source.unsplash.com/600x400/?americano,coffee"
+  },
+  {
+    "id": 5,
+    "name": "Mocha",
+    "description": "A chocolatey twist on a latte with rich cocoa syrup.",
+    "price": 4.50,
+    "image": "https://source.unsplash.com/600x400/?mocha,coffee"
+  },
+  {
+    "id": 6,
+    "name": "Cold Brew",
+    "description": "Slow-steeped cold brew coffee served over ice for a smooth finish.",
+    "price": 4.00,
+    "image": "https://source.unsplash.com/600x400/?cold-brew,coffee"
+  }
+]
