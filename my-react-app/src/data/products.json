@@ -1,0 +1,44 @@
+[
+  {
+    "id": 1,
+    "name": "Espresso",
+    "description": "A rich and bold shot of pure coffee flavor.",
+    "price": 2.50,
+    "image": "https://source.unsplash.com/600x400/?espresso,coffee"
+  },
+  {
+    "id": 2,
+    "name": "Cappuccino",
+    "description": "Espresso blended with steamed milk and topped with airy foam.",
+    "price": 3.75,
+    "image": "https://source.unsplash.com/600x400/?cappuccino,coffee"
+  },
+  {
+    "id": 3,
+    "name": "Latte",
+    "description": "Smooth espresso combined with steamed milk and a light layer of foam.",
+    "price": 4.25,
+    "image": "https://source.unsplash.com/600x400/?latte,coffee"
+  },
+  {
+    "id": 4,
+    "name": "Americano",
+    "description": "Classic espresso diluted with hot water for a milder flavor.",
+    "price": 3.00,
+    "image": "https://source.unsplash.com/600x400/?americano,coffee"
+  },
+  {
+    "id": 5,
+    "name": "Mocha",
+    "description": "A chocolatey twist on a latte with rich cocoa syrup.",
+    "price": 4.50,
+    "image": "https://source.unsplash.com/600x400/?mocha,coffee"
+  },
+  {
+    "id": 6,
+    "name": "Cold Brew",
+    "description": "Slow-steeped cold brew coffee served over ice for a smooth finish.",
+    "price": 4.00,
+    "image": "https://source.unsplash.com/600x400/?cold-brew,coffee"
+  }
+]
