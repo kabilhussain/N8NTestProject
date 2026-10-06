@@ -1,22 +1,25 @@
-import React from 'react'
-import products from '../data/products.json'
-import CoffeeCards from './CoffeeCards'
-import './Products.css'
+import React from 'react';
+import products from '../data/products.json';
+import CoffeeCards from './CoffeeCards';
+import './Products.css';
 
 function Products() {
   return (
-    <section className="products">
-      <h2>Our Products</h2>
-      <div className="products-container">
-        {products.map(product => (
+    <div className="products">
+      {products.map(({ id, name, description, price, image }) => {
+        const imageSrc = new URL(`../assets/${image}`, import.meta.url).href;
+        return (
           <CoffeeCards
-            key={product.id}
-            {...product}
+            key={id}
+            name={name}
+            description={description}
+            price={price}
+            image={imageSrc}
           />
-        ))}
-      </div>
-    </section>
-  )
+        );
+      })}
+    </div>
+  );
 }
 
-export default Products
+export default Products;
