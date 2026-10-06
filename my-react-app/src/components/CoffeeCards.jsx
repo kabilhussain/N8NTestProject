@@ -1,25 +1,22 @@
 import React from 'react';
 import './CoffeeCards.css';
 
-const CoffeeCards = ({ title, description, price, image }) => {
-  const imageSrc = image
-    ? new URL(`../assets/${image}`, import.meta.url).href
-    : null;
-
+function CoffeeCards({ products }) {
   return (
-    <div className="coffee-card">
-      {imageSrc && (
-        <div className="coffee-card-image-wrapper">
-          <img src={imageSrc} alt={title} className="coffee-card-image" />
-        </div>
-      )}
-      <div className="coffee-card-content">
-        <h3 className="coffee-card-title">{title}</h3>
-        <p className="coffee-card-description">{description}</p>
-        <p className="coffee-card-price">{price}</p>
-      </div>
+    <div className="coffee-cards-container">
+      {products.map((product) => {
+        const imageSrc = new URL(`../assets/${product.image}`, import.meta.url).href;
+        return (
+          <div key={product.id} className="coffee-card">
+            <img src={imageSrc} alt={product.name} />
+            <h3>{product.name}</h3>
+            <p>{product.description}</p>
+            <span>{product.price}</span>
+          </div>
+        );
+      })}
     </div>
   );
-};
+}
 
 export default CoffeeCards;
