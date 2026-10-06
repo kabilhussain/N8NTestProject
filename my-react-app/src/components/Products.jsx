@@ -3,20 +3,13 @@ import './Products.css'
 import CoffeeCards from './CoffeeCards.jsx'
 import products from '../data/products.json'
 
-function Products({ limit, featured }) {
-  let displayProducts = products
+const allProducts = products
 
-  if (featured) {
-    displayProducts = displayProducts.filter(product => product.featured)
-  }
-
-  if (typeof limit === 'number') {
-    displayProducts = displayProducts.slice(0, limit)
-  }
-
+function Products({ limit }) {
+  const displayProducts = limit ? allProducts.slice(0, limit) : allProducts
   return (
     <section className="products">
-      <h2>{featured ? 'Featured Products' : 'Products'}</h2>
+      <h2>Products</h2>
       <div className="products-grid">
         {displayProducts.map(coffee => (
           <CoffeeCards key={coffee.id} coffee={coffee} />
