@@ -20,7 +20,7 @@ function App() {
             <>
               <Hero />
               <MenuHighlights />
-              <Products limit={4} />
+              <Products limit={3} />
               <WhyChooseUs />
               <AboutUs />
             </>
