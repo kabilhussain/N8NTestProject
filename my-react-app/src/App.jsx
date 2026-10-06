@@ -1,5 +1,5 @@
 import './App.css'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 import Hero from './components/Hero.jsx'
 import MenuHighlights from './components/MenuHighlights.jsx'
 import Products from './components/Products.jsx'
@@ -12,7 +12,7 @@ import Footer from './components/Footer.jsx'
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Routes>
         <Route
           path="/"
@@ -20,7 +20,7 @@ function App() {
             <>
               <Hero />
               <MenuHighlights />
-              <Products />
+              <Products limit={4} />
               <WhyChooseUs />
               <AboutUs />
             </>
@@ -32,7 +32,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
       </Routes>
       <Footer />
-    </BrowserRouter>
+    </>
   )
 }
 
