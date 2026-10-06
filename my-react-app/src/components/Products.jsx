@@ -1,23 +1,13 @@
-import React, { useState, useEffect } from 'react'
-import CoffeeCards from './CoffeeCards.jsx'
+import React from 'react'
+import products from '../data/products.json'
+import CoffeeCards from './CoffeeCards'
 import './Products.css'
 
 function Products() {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    // TODO: replace with your real data‐loading logic
-    // e.g. fetch('/api/products').then(res=>res.json()).then(setProducts)
-    import('../data/products.json')
-      .then(module => setProducts(module.default))
-      .catch(err => console.error('Failed to load products:', err))
-  }, [])
-
   return (
-    <section className="products-page">
-      <h2>All Products</h2>
-      {/* any filter controls you already have */}
-      <div className="products-grid">
+    <section className="products">
+      <h2>Our Products</h2>
+      <div className="products-container">
         {products.map(product => (
           <CoffeeCards
             key={product.id}
