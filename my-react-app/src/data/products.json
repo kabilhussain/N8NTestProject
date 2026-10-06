@@ -1,44 +1,44 @@
 [
   {
     "id": 1,
-    "title": "Espresso",
-    "description": "A strong and bold shot of pure coffee flavor.",
+    "name": "Espresso",
+    "description": "Rich and bold coffee shot",
     "price": 2.5,
-    "image": "#"
+    "image": "espresso.png"
   },
   {
     "id": 2,
-    "title": "Americano",
-    "description": "Espresso diluted with hot water for a smooth taste.",
-    "price": 3.0,
-    "image": "#"
+    "name": "Americano",
+    "description": "Espresso diluted with hot water",
+    "price": 2.75,
+    "image": "americano.png"
   },
   {
     "id": 3,
-    "title": "Cappuccino",
-    "description": "Espresso with steamed milk foam, light and frothy.",
-    "price": 3.75,
-    "image": "#"
+    "name": "Latte",
+    "description": "Espresso with steamed milk and foam",
+    "price": 3.5,
+    "image": "latte.png"
   },
   {
     "id": 4,
-    "title": "Latte",
-    "description": "Creamy blend of espresso and steamed milk.",
-    "price": 4.0,
-    "image": "#"
+    "name": "Cappuccino",
+    "description": "Equal parts espresso, steamed milk, and foam",
+    "price": 3.75,
+    "image": "cappuccino.png"
   },
   {
     "id": 5,
-    "title": "Mocha",
-    "description": "Chocolate-infused latte with espresso and steamed milk.",
-    "price": 4.5,
-    "image": "#"
+    "name": "Mocha",
+    "description": "Espresso with chocolate and steamed milk",
+    "price": 4.0,
+    "image": "mocha.png"
   },
   {
     "id": 6,
-    "title": "Macchiato",
-    "description": "Espresso marked with a dollop of milk foam.",
-    "price": 3.25,
-    "image": "#"
+    "name": "Macchiato",
+    "description": "Espresso shot with a dash of milk foam",
+    "price": 3.0,
+    "image": "macchiato.png"
   }
 ]
