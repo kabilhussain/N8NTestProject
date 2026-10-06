@@ -1,38 +1,30 @@
-import React from 'react'
+import { useState, useEffect } from 'react'
+import productsData from '../data/products.json'
 import './CoffeeCards.css'
 
-const CoffeeCards = ({ items = [], onAdd }) => {
+export default function CoffeeCards({ products }) {
+  const [items, setItems] = useState([])
+
+  useEffect(() => {
+    // if products are passed in, use them; otherwise use full list
+    setItems(products ?? productsData)
+  }, [products])
+
   return (
-    <div className="coffee-card">
-      {items.map(item => (
-        <div key={item.id} className="coffee-card__item">
-          {item.image && (
-            <img
-              src={item.image}
-              alt={item.name}
-              className="coffee-card__image"
-            />
-          )}
-          <h3 className="coffee-card__name">{item.name}</h3>
-          {item.description && (
-            <p className="coffee-card__description">{item.description}</p>
-          )}
-          <div className="coffee-card__footer">
-            <span className="coffee-card__price">
-              ${item.price != null ? item.price.toFixed(2) : ''}
-            </span>
-            <button
-              type="button"
-              className="coffee-card__add-button"
-              onClick={() => onAdd(item)}
-            >
-              +
-            </button>
+    <div className="coffee-cards">
+      {items.map(product => {
+        const imgSrc = new URL(`../assets/${product.image}`, import.meta.url).href
+        return (
+          <div key={product.id} className="coffee-card">
+            <img src={imgSrc} alt={product.name} className="coffee-card-image" />
+            <div className="coffee-card-content">
+              <h3 className="coffee-card-title">{product.name}</h3>
+              <p className="coffee-card-desc">{product.description}</p>
+              <p className="coffee-card-price">${product.price}</p>
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
     </div>
   )
 }
-
-export default CoffeeCards
