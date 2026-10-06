@@ -1,21 +1,18 @@
-import React from 'react'
-import './CoffeeCards.css'
+import React from 'react';
+import './CoffeeCards.css';
 
-function CoffeeCards({ name, description, price, image }) {
+export default function CoffeeCards({ name, description, price, image }) {
+  // Dynamically resolve the image path from the src/assets folder
+  const imageSrc = new URL(`../assets/${image}`, import.meta.url).href;
+
   return (
     <div className="coffee-card">
-      {image && (
-        <div className="coffee-card__image-wrapper">
-          <img src={image} alt={name} className="coffee-card__image" />
-        </div>
-      )}
-      <div className="coffee-card__info">
-        <h3 className="coffee-card__name">{name}</h3>
-        <p className="coffee-card__description">{description}</p>
-        <p className="coffee-card__price">{price}</p>
+      <img src={imageSrc} alt={name} className="coffee-card-image" />
+      <div className="coffee-card-details">
+        <h3 className="coffee-card-title">{name}</h3>
+        <p className="coffee-card-description">{description}</p>
+        <span className="coffee-card-price">{price}</span>
       </div>
     </div>
-  )
+  );
 }
-
-export default CoffeeCards
