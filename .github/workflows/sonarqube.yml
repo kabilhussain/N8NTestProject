@@ -1,0 +1,48 @@
+name: Build & SonarQube Analysis
+
+on:
+  push:
+    branches:
+      - '**'          # every branch
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:  # allow manual runs from the Actions tab
+
+jobs:
+  build-and-analyze:
+    name: Lint, Build & Scan
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: my-react-app
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # full history improves Sonar blame / new-code detection
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: my-react-app/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+        continue-on-error: true  # existing lint errors shouldn't block the Sonar scan; remove once clean
+
+      - name: Build
+        run: npm run build
+
+      - name: SonarQube Scan
+        uses: SonarSource/sonarqube-scan-action@v5
+        with:
+          projectBaseDir: my-react-app
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
