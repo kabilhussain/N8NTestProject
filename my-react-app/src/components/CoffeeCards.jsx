@@ -1,14 +1,28 @@
-import React from 'react'
 import './CoffeeCards.css'
 
-function CoffeeCards({ coffee }) {
+function CoffeeCards({ name, price, description, image, product }) {
+  const resolvedImage = image || product?.image
+  const resolvedName = name || product?.name || 'Coffee'
+  const resolvedPrice = price ?? product?.price
+  const resolvedDescription = description || product?.description
+
   return (
     <div className="coffee-card">
-      <img src={coffee.image} alt={coffee.name} className="coffee-image" />
-      <h3>{coffee.name}</h3>
-      <p>{coffee.description}</p>
-      <div className="coffee-price">
-        <span>${coffee.price}</span>
+      {resolvedImage ? (
+        <img className="coffee-card-image" src={resolvedImage} alt={resolvedName} />
+      ) : (
+        <div className="coffee-card-image coffee-card-image-placeholder" aria-hidden="true">
+          ☕
+        </div>
+      )}
+      <div className="coffee-card-body">
+        <h3 className="coffee-card-title">{resolvedName}</h3>
+        {resolvedDescription && (
+          <p className="coffee-card-description">{resolvedDescription}</p>
+        )}
+        {resolvedPrice !== undefined && resolvedPrice !== null && (
+          <p className="coffee-card-price">${resolvedPrice}</p>
+        )}
       </div>
     </div>
   )
