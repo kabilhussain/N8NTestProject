@@ -1,17 +1,53 @@
-import React from 'react'
-import './CoffeeCards.css'
+import { coffeeImages, getImageForIndex } from "../data/coffeeImages";
+import "./CoffeeCards.css";
 
-function CoffeeCards({ coffee }) {
+const CoffeeCards = ({ products = [] }) => {
+  // Assign images to products using a for loop with getImageForIndex
+  const productsWithImages = [];
+  for (let i = 0; i < products.length; i++) {
+    const product = products[i];
+    const image =
+      product.image ||
+      getImageForIndex(i) ||
+      (coffeeImages && coffeeImages.length
+        ? coffeeImages[i % coffeeImages.length]
+        : "");
+    productsWithImages.push({ ...product, image });
+  }
+
+  if (!productsWithImages.length) {
+    return null;
+  }
+
   return (
-    <div className="coffee-card">
-      <img src={coffee.image} alt={coffee.name} className="coffee-image" />
-      <h3>{coffee.name}</h3>
-      <p>{coffee.description}</p>
-      <div className="coffee-price">
-        <span>${coffee.price}</span>
-      </div>
+    <div className="coffee-cards">
+      {productsWithImages.map((product, index) => (
+        <div className="coffee-card" key={product.id ?? index}>
+          <div className="coffee-card__image-wrapper">
+            {product.image ? (
+              <img
+                className="coffee-card__image"
+                src={product.image}
+                alt={product.name || "Coffee"}
+                loading="lazy"
+              />
+            ) : (
+              <div className="coffee-card__image coffee-card__image--placeholder" />
+            )}
+          </div>
+          <div className="coffee-card__body">
+            <h3 className="coffee-card__title">{product.name}</h3>
+            {product.description && (
+              <p className="coffee-card__description">{product.description}</p>
+            )}
+            {product.price != null && (
+              <p className="coffee-card__price">${product.price}</p>
+            )}
+          </div>
+        </div>
+      ))}
     </div>
-  )
-}
+  );
+};
 
-export default CoffeeCards
+export default CoffeeCards;

@@ -1,38 +1,88 @@
-.products-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 24px;
-  padding: 16px;
-  box-sizing: border-box;
+.products-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.product-card {
-  padding: 16px;
-  background: var(--bg);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  box-sizing: border-box;
+.products-section h2 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.coffee-card {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  transition: box-shadow 0.2s;
-}
-
-.product-card:hover {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
   box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-@media (max-width: 768px) {
-  .products-container {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 16px;
-    padding: 12px;
+.coffee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.coffee-card-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--code-bg);
+}
+
+.coffee-card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.coffee-card-title {
+  font-family: var(--heading);
+  color: var(--text-h);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.coffee-card-description {
+  font-family: var(--sans);
+  color: var(--text);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.coffee-card-price {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: auto;
+}
+
+@media (max-width: 640px) {
+  .products-section {
+    padding: 2rem 1rem;
   }
-}
 
-@media (max-width: 480px) {
-  .products-container {
-    grid-template-columns: 1fr;
-    padding: 8px;
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
+  .coffee-card-image {
+    height: 150px;
   }
 }
