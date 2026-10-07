@@ -1,31 +1,51 @@
-import './CoffeeCards.css'
+import { getCoffeeImage } from "../data/coffeeImages";
+import "./Products.css";
 
-function CoffeeCards({ name, price, description, image, product }) {
-  const resolvedImage = image || product?.image
-  const resolvedName = name || product?.name || 'Coffee'
-  const resolvedPrice = price ?? product?.price
-  const resolvedDescription = description || product?.description
+function CoffeeCards({ products = [] }) {
+  if (!Array.isArray(products) || products.length === 0) {
+    return null;
+  }
 
   return (
-    <div className="coffee-card">
-      {resolvedImage ? (
-        <img className="coffee-card-image" src={resolvedImage} alt={resolvedName} />
-      ) : (
-        <div className="coffee-card-image coffee-card-image-placeholder" aria-hidden="true">
-          ☕
-        </div>
-      )}
-      <div className="coffee-card-body">
-        <h3 className="coffee-card-title">{resolvedName}</h3>
-        {resolvedDescription && (
-          <p className="coffee-card-description">{resolvedDescription}</p>
-        )}
-        {resolvedPrice !== undefined && resolvedPrice !== null && (
-          <p className="coffee-card-price">${resolvedPrice}</p>
-        )}
-      </div>
+    <div className="coffee-cards-grid">
+      {products.map((product, index) => {
+        const imageSrc =
+          product.image || getCoffeeImage(index) || "";
+
+        return (
+          <div className="coffee-card" key={`${product.name}-${index}`}>
+            {imageSrc ? (
+              <img
+                className="coffee-card-image"
+                src={imageSrc}
+                alt={product.name}
+                loading="lazy"
+              />
+            ) : (
+              <div
+                className="coffee-card-image coffee-card-image-placeholder"
+                aria-label={product.name}
+                role="img"
+              >
+                <span>☕</span>
+              </div>
+            )}
+            <div className="coffee-card-body">
+              <h3 className="coffee-card-title">{product.name}</h3>
+              {product.description && (
+                <p className="coffee-card-description">
+                  {product.description}
+                </p>
+              )}
+              {product.price !== undefined && product.price !== null && (
+                <p className="coffee-card-price">${product.price}</p>
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
-  )
+  );
 }
 
-export default CoffeeCards
+export default CoffeeCards;
