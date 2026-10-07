@@ -1,20 +1,29 @@
-import React from 'react'
-import './Products.css'
-import CoffeeCards from './CoffeeCards.jsx'
+import { useMemo } from 'react'
 import products from '../data/products.json'
-
-const allProducts = products
+import coffeeImages from '../data/coffeeImages.js'
+import CoffeeCards from './CoffeeCards.jsx'
+import './Products.css'
 
 function Products({ limit }) {
-  const displayProducts = limit ? allProducts.slice(0, limit) : allProducts
+  const productsWithImages = useMemo(() => {
+    const source = limit ? products.slice(0, limit) : products
+    const result = []
+
+    for (let i = 0; i < source.length; i++) {
+      const randomIndex = Math.floor(Math.random() * coffeeImages.length)
+      result.push({
+        ...source[i],
+        image: coffeeImages[randomIndex],
+      })
+    }
+
+    return result
+  }, [limit])
+
   return (
     <section className="products">
-      <h2>Products</h2>
-      <div className="products-grid">
-        {displayProducts.map(coffee => (
-          <CoffeeCards key={coffee.id} coffee={coffee} />
-        ))}
-      </div>
+      <h2>Our Coffee Products</h2>
+      <CoffeeCards products={productsWithImages} />
     </section>
   )
 }
