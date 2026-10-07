@@ -1,22 +1,88 @@
+.products-section {
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.products-section h2 {
+  font-family: var(--heading);
+  color: var(--text-h);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.coffee-card {
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.coffee-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
 .coffee-card-image {
-  display: block;
   width: 100%;
   height: 200px;
   object-fit: cover;
-  border-radius: 12px;
-  background: var(--code-bg);
-  border: 1px solid var(--border);
-  margin-bottom: 16px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  border-radius: 12px 12px 0 0;
+  background-color: var(--code-bg);
 }
 
-.coffee-card:hover .coffee-card-image {
-  transform: scale(1.03);
-  box-shadow: var(--shadow);
+.coffee-card-body {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 
-@media (max-width: 1024px) {
+.coffee-card-title {
+  font-family: var(--heading);
+  color: var(--text-h);
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+.coffee-card-description {
+  font-family: var(--sans);
+  color: var(--text);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.coffee-card-price {
+  font-family: var(--mono);
+  color: var(--accent);
+  font-weight: 600;
+  margin-top: auto;
+}
+
+@media (max-width: 640px) {
+  .products-section {
+    padding: 2rem 1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 1rem;
+  }
+
   .coffee-card-image {
-    height: 170px;
+    height: 150px;
   }
 }
