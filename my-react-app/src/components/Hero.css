@@ -1,5 +1,209 @@
-/* Adjust hero height to leave space for coffee cards below */
 .hero {
-  min-height: 60vh;
-  padding: 2rem 0;
+  --cup-color: #fffaf2;
+  --cup-shadow: rgba(55, 24, 92, 0.28);
+
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  place-items: center;
+  flex: 1;
+  min-height: 580px;
+  padding: 5rem 2rem;
+  overflow: hidden;
+  box-sizing: border-box;
+  color: #fdfaff;
+  background:
+    radial-gradient(ellipse at 50% 108%, rgba(218, 177, 255, 0.28), transparent 43%),
+    radial-gradient(circle at 12% 20%, rgba(219, 174, 255, 0.2), transparent 25%),
+    radial-gradient(circle at 90% 78%, rgba(132, 73, 193, 0.38), transparent 30%),
+    linear-gradient(135deg, #29103f 0%, #55217e 48%, #36134f 100%);
+}
+
+.hero::before,
+.hero::after {
+  position: absolute;
+  z-index: -1;
+  width: 92px;
+  height: 68px;
+  border: 3px solid rgba(255, 250, 242, 0.88);
+  border-top-width: 6px;
+  border-radius: 7px 7px 26px 26px;
+  background:
+    linear-gradient(180deg, transparent 0 20%, rgba(126, 69, 161, 0.28) 21% 25%, transparent 26%),
+    linear-gradient(135deg, #fffdf8, var(--cup-color) 65%, #eadcf0);
+  box-shadow:
+    0 13px 0 -6px rgba(255, 250, 242, 0.88),
+    15px 1px 0 -8px var(--cup-color),
+    15px 1px 0 -5px rgba(255, 250, 242, 0.88),
+    0 24px 32px var(--cup-shadow);
+  content: '';
+  pointer-events: none;
+}
+
+.hero::before {
+  top: 21%;
+  left: 10%;
+  transform: rotate(-12deg);
+  animation: coffee-cup-float 5.5s ease-in-out infinite;
+}
+
+.hero::after {
+  right: 11%;
+  bottom: 19%;
+  width: 76px;
+  height: 56px;
+  border-radius: 6px 6px 22px 22px;
+  transform: rotate(10deg);
+  animation: coffee-cup-float-alt 6.5s ease-in-out infinite;
+}
+
+.hero-content {
+  width: min(100%, 720px);
+  padding: 2.5rem 1rem;
+  animation: hero-content-enter 700ms ease-out both;
+}
+
+.hero h1 {
+  max-width: 700px;
+  margin: 0 auto 1.25rem;
+  color: #fffaff;
+  font-size: clamp(2.7rem, 7vw, 5.25rem);
+  font-weight: 750;
+  letter-spacing: -0.055em;
+  line-height: 1.04;
+  text-wrap: balance;
+  text-shadow: 0 5px 28px rgba(20, 6, 35, 0.28);
+}
+
+.hero p {
+  max-width: 540px;
+  margin: 0 auto 2rem;
+  color: rgba(255, 248, 255, 0.84);
+  font-size: clamp(1.05rem, 2vw, 1.3rem);
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.8rem 1.65rem;
+  border: 1px solid rgba(255, 255, 255, 0.65);
+  border-radius: 999px;
+  color: #3b1756;
+  background: linear-gradient(135deg, #fffdf9, #f3e6ff);
+  box-shadow: 0 10px 28px rgba(22, 7, 37, 0.25);
+  font-weight: 700;
+  text-decoration: none;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    background-color 180ms ease;
+}
+
+.hero-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 34px rgba(22, 7, 37, 0.34);
+}
+
+.hero-button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 5px;
+}
+
+@keyframes coffee-cup-float {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: -12deg;
+  }
+
+  50% {
+    translate: 0 -16px;
+    rotate: -7deg;
+  }
+}
+
+@keyframes coffee-cup-float-alt {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 10deg;
+  }
+
+  50% {
+    translate: 0 13px;
+    rotate: 5deg;
+  }
+}
+
+@keyframes hero-content-enter {
+  from {
+    opacity: 0;
+    translate: 0 16px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    min-height: 540px;
+    padding: 4.5rem 1.25rem;
+  }
+
+  .hero::before {
+    top: 9%;
+    left: -18px;
+    scale: 0.72;
+  }
+
+  .hero::after {
+    right: -15px;
+    bottom: 8%;
+    scale: 0.72;
+  }
+
+  .hero-content {
+    padding: 2rem 0.5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2.55rem, 12vw, 4rem);
+  }
+}
+
+@media (max-width: 420px) {
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero::before {
+    top: 5%;
+    left: -30px;
+    scale: 0.58;
+  }
+
+  .hero::after {
+    right: -28px;
+    bottom: 5%;
+    scale: 0.58;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero::before,
+  .hero::after,
+  .hero-content {
+    animation: none;
+  }
+
+  .hero-button {
+    transition: none;
+  }
 }
