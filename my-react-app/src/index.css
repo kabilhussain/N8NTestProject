@@ -2,30 +2,33 @@
   color-scheme: light;
 
   --text: #514238;
-  --text-h: #2f2119;
-  --bg: #fbf7f1;
+  --text-h: #302017;
+  --bg: #faf6ef;
   --surface: #fffdf9;
-  --surface-soft: #f4ece2;
-  --border: #e7d9c9;
-  --code-bg: #f2e9df;
-  --accent: #8b5e3c;
-  --accent-strong: #68432b;
-  --accent-bg: rgba(139, 94, 60, 0.1);
-  --accent-border: rgba(139, 94, 60, 0.38);
-  --social-bg: rgba(244, 236, 226, 0.78);
-  --shadow: 0 18px 46px rgba(59, 39, 25, 0.1), 0 4px 14px rgba(59, 39, 25, 0.05);
+  --surface-soft: #f3eadc;
+  --border: #e6d8c5;
+  --code-bg: #f1e7d8;
 
-  --coffee-cream: #fbf7f1;
-  --coffee-milk: #f4ece2;
-  --coffee-caramel: #bd8a5a;
-  --coffee-roast: #68432b;
-  --coffee-espresso: #2f2119;
-  --coffee-foam: #fffdf9;
+  --accent: #9a6038;
+  --accent-strong: #704126;
+  --accent-bg: rgb(154 96 56 / 10%);
+  --accent-border: rgb(154 96 56 / 38%);
+  --social-bg: rgb(243 234 220 / 75%);
+  --shadow: 0 16px 40px rgb(62 39 24 / 10%), 0 4px 12px rgb(62 39 24 / 6%);
 
-  --sans: "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --coffee-cream: #faf6ef;
+  --coffee-milk: #fffdf9;
+  --coffee-oat: #eadbc5;
+  --coffee-caramel: #bc8250;
+  --coffee-brown: #815334;
+  --coffee-espresso: #38251b;
+
+  --sans: "Segoe UI", Roboto, Arial, sans-serif;
   --heading: Georgia, "Times New Roman", serif;
 
   font-family: var(--sans);
+  color: var(--text);
+  background: var(--bg);
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -40,7 +43,6 @@
 
 html {
   min-width: 320px;
-  min-height: 100%;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   background: var(--bg);
@@ -57,29 +59,14 @@ body {
   line-height: 1.65;
 }
 
-body,
-button,
-input,
-select,
-textarea {
-  font-family: var(--sans);
-}
-
 #root {
   min-height: 100vh;
-  isolation: isolate;
+  display: flex;
+  flex-direction: column;
 }
 
-img,
-svg,
-video,
-canvas {
-  display: block;
-  max-width: 100%;
-}
-
-img {
-  height: auto;
+main {
+  width: 100%;
 }
 
 h1,
@@ -107,25 +94,25 @@ h2 {
 }
 
 h3 {
-  font-size: clamp(1.35rem, 2.5vw, 1.9rem);
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
   letter-spacing: -0.02em;
 }
 
 h4,
 h5,
 h6 {
-  font-size: 1.125rem;
+  font-size: 1.15rem;
 }
 
 p {
   margin: 0 0 1rem;
-  max-width: 68ch;
+  text-wrap: pretty;
 }
 
 a {
   color: var(--accent-strong);
-  text-decoration-thickness: 0.08em;
-  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
   transition: color 180ms ease, text-decoration-color 180ms ease;
 }
 
@@ -137,11 +124,11 @@ button,
 input,
 select,
 textarea {
-  color: inherit;
   font: inherit;
 }
 
 button {
+  color: inherit;
   cursor: pointer;
 }
 
@@ -150,71 +137,56 @@ button:disabled {
   opacity: 0.65;
 }
 
+img,
+svg,
+video {
+  max-width: 100%;
+}
+
+img {
+  display: block;
+}
+
+ul,
+ol {
+  padding-inline-start: 1.35em;
+}
+
 :focus-visible {
   outline: 3px solid var(--coffee-caramel);
   outline-offset: 3px;
 }
 
 ::selection {
-  background: rgba(189, 138, 90, 0.28);
   color: var(--coffee-espresso);
+  background: #e9c9a5;
 }
 
-hr {
-  height: 1px;
-  margin: 2rem 0;
-  border: 0;
-  background: var(--border);
-}
-
-small {
-  font-size: 0.875em;
-}
-
-strong {
-  color: var(--text-h);
-  font-weight: 700;
-}
-
-code,
-pre {
-  font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-}
-
-code {
-  padding: 0.15em 0.4em;
-  border-radius: 0.35rem;
-  background: var(--code-bg);
-  font-size: 0.9em;
-}
-
-pre {
-  overflow-x: auto;
-  padding: 1rem;
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  background: var(--code-bg);
-}
-
-:where(button, input, select, textarea) {
-  accent-color: var(--accent);
-}
-
-:where(input, select, textarea) {
-  max-width: 100%;
-}
-
-:where(input, select, textarea):focus-visible {
-  outline-offset: 1px;
-}
-
-.coffee-cup-float,
+/* Shared motion hooks for decorative coffee cups and steam. */
 .coffee-cup-animation,
-.coffee-cup--animated,
-.floating-cup {
-  transform-origin: 50% 75%;
-  animation: coffee-cup-float 3.8s ease-in-out infinite;
-  will-change: transform;
+.coffee-cup--floating {
+  transform-origin: center bottom;
+  animation: coffee-cup-float 4.5s ease-in-out infinite;
+}
+
+.coffee-steam,
+.coffee-steam::before,
+.coffee-steam::after {
+  animation: coffee-steam-rise 2.8s ease-in-out infinite;
+}
+
+.coffee-steam::before,
+.coffee-steam::after {
+  content: "";
+  position: absolute;
+}
+
+.coffee-steam::before {
+  animation-delay: 0.45s;
+}
+
+.coffee-steam::after {
+  animation-delay: 0.9s;
 }
 
 @keyframes coffee-cup-float {
@@ -224,21 +196,34 @@ pre {
   }
 
   50% {
-    transform: translateY(-12px) rotate(1deg);
+    transform: translateY(-10px) rotate(1deg);
   }
 }
 
-@media (max-width: 700px) {
+@keyframes coffee-steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(8px) scaleX(0.85);
+  }
+
+  35% {
+    opacity: 0.7;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-18px) scaleX(1.1);
+  }
+}
+
+@media (max-width: 640px) {
   body {
-    font-size: 0.96rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
   }
 
-  h1 {
-    font-size: clamp(2.35rem, 11vw, 3.5rem);
-  }
-
-  h2 {
-    font-size: clamp(1.85rem, 8vw, 2.6rem);
+  html {
+    scroll-padding-top: 4rem;
   }
 }
 
