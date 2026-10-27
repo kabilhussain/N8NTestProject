@@ -1,27 +1,69 @@
-import React from 'react'
-import CoffeeCards from './CoffeeCards'
-import products from '../data/products.json'
+import './Products.css'
 
-const MenuHighlights = () => {
-  const featuredProducts = products.filter(product => product.featured)
-
+function MenuHighlights() {
   return (
-    <section className="menu-highlights">
-      <h2>Menu Highlights</h2>
-      <div className="menu-highlights__container">
-        {featuredProducts.map(({ id, name, price, image }) => {
-          const imageSrc = new URL(`../assets/${image}`, import.meta.url).href
-          return (
-            <CoffeeCards
-              key={id}
-              id={id}
-              name={name}
-              price={price}
-              image={imageSrc}
-            />
-          )
-        })}
+    <section
+      className="menu-highlights"
+      aria-labelledby="menu-highlights-title"
+      style={{
+        textAlign: 'center',
+        color: 'var(--text-h, #302017)',
+      }}
+    >
+      <div
+        style={{
+          maxWidth: '760px',
+          margin: '0 auto',
+          padding: 'clamp(3rem, 7vw, 5rem) 1.5rem 2rem',
+        }}
+      >
+        <span
+          aria-hidden="true"
+          style={{
+            display: 'inline-block',
+            marginBottom: '0.75rem',
+            fontSize: '2rem',
+            animation: 'menu-cup-float 2.8s ease-in-out infinite',
+          }}
+        >
+          ☕
+        </span>
+        <h2
+          id="menu-highlights-title"
+          style={{
+            margin: '0 0 0.85rem',
+            color: 'var(--coffee-espresso, #38251b)',
+            textAlign: 'center',
+          }}
+        >
+          Menu Highlights
+        </h2>
+        <p
+          style={{
+            maxWidth: '620px',
+            margin: '0 auto',
+            color: 'var(--text, #514238)',
+            lineHeight: 1.7,
+            textAlign: 'center',
+          }}
+        >
+          Discover thoughtfully crafted coffees and café favorites, made fresh
+          with quality beans and a little extra care.
+        </p>
       </div>
+
+      <style>
+        {`
+          @keyframes menu-cup-float {
+            0%, 100% { transform: translateY(0) rotate(-4deg); }
+            50% { transform: translateY(-8px) rotate(4deg); }
+          }
+
+          @media (prefers-reduced-motion: reduce) {
+            .menu-highlights span { animation: none; }
+          }
+        `}
+      </style>
     </section>
   )
 }
