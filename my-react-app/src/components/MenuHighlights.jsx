@@ -1,47 +1,40 @@
-import React from "react";
-
 const featuredCoffees = [
   {
-    name: "Caramel Cloud Latte",
-    description: "Smooth espresso, velvety steamed milk, and a touch of caramel.",
+    name: "Classic Latte",
+    description: "Smooth espresso and steamed milk with a silky finish.",
+    price: "$4.50",
+    emoji: "☕",
+  },
+  {
+    name: "Caramel Macchiato",
+    description: "Espresso, creamy milk, and a drizzle of rich caramel.",
     price: "$5.25",
-    icon: "☕",
+    emoji: "☕",
   },
   {
-    name: "Classic Cappuccino",
-    description: "Rich espresso topped with creamy milk foam and cocoa.",
-    price: "$4.75",
-    icon: "🥛",
-  },
-  {
-    name: "Honey Oat Cold Brew",
-    description: "Slow-steeped coffee with oat milk and a hint of honey.",
-    price: "$5.50",
-    icon: "🧋",
+    name: "Mocha Delight",
+    description: "A comforting blend of espresso, chocolate, and milk.",
+    price: "$5.00",
+    emoji: "☕",
   },
 ];
 
-function MenuHighlights() {
+export default function MenuHighlights() {
   return (
-    <section className="menu-highlights products-section" id="menu">
-      <div className="section-heading">
-        <h2>Menu Highlights</h2>
-        <p>
-          Find your new favorite in our selection of handcrafted coffee,
-          thoughtfully brewed with the finest beans.
-        </p>
-      </div>
+    <section className="menu-highlights" id="menu">
+      <h2>Menu Highlights</h2>
+      <p>Discover a few of our favorite handcrafted coffees.</p>
 
-      <div className="products-grid">
+      <div className="menu-grid">
         {featuredCoffees.map((coffee) => (
           <article className="product-card" key={coffee.name}>
-            <div className="product-image" aria-hidden="true">
-              <span>{coffee.icon}</span>
-            </div>
+            <span className="product-image" role="img" aria-label="Coffee cup">
+              {coffee.emoji}
+            </span>
             <div className="product-info">
               <h3 className="product-name">{coffee.name}</h3>
               <p className="product-description">{coffee.description}</p>
-              <p className="product-price">{coffee.price}</p>
+              <span className="product-price">{coffee.price}</span>
             </div>
           </article>
         ))}
@@ -49,5 +42,3 @@ function MenuHighlights() {
     </section>
   );
 }
-
-export default MenuHighlights;
