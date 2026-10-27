@@ -1,71 +1,65 @@
-import './Products.css'
+import products from "../data/products.json";
+import "./Products.css";
+
+const featuredProducts = Array.isArray(products) ? products.slice(0, 3) : [];
 
 function MenuHighlights() {
   return (
-    <section
-      className="menu-highlights"
-      aria-labelledby="menu-highlights-title"
-      style={{
-        textAlign: 'center',
-        color: 'var(--text-h, #302017)',
-      }}
-    >
-      <div
-        style={{
-          maxWidth: '760px',
-          margin: '0 auto',
-          padding: 'clamp(3rem, 7vw, 5rem) 1.5rem 2rem',
-        }}
+    <section className="menu-highlights" aria-labelledby="menu-highlights-title">
+      <header
+        className="menu-highlights__header"
+        style={{ textAlign: "center", margin: "0 auto 2rem", maxWidth: "700px" }}
       >
-        <span
-          aria-hidden="true"
-          style={{
-            display: 'inline-block',
-            marginBottom: '0.75rem',
-            fontSize: '2rem',
-            animation: 'menu-cup-float 2.8s ease-in-out infinite',
-          }}
-        >
-          ☕
-        </span>
-        <h2
-          id="menu-highlights-title"
-          style={{
-            margin: '0 0 0.85rem',
-            color: 'var(--coffee-espresso, #38251b)',
-            textAlign: 'center',
-          }}
-        >
-          Menu Highlights
-        </h2>
-        <p
-          style={{
-            maxWidth: '620px',
-            margin: '0 auto',
-            color: 'var(--text, #514238)',
-            lineHeight: 1.7,
-            textAlign: 'center',
-          }}
-        >
-          Discover thoughtfully crafted coffees and café favorites, made fresh
-          with quality beans and a little extra care.
+        <h2 id="menu-highlights-title">Menu Highlights</h2>
+        <p>
+          Discover a few of our favorite coffees, roasted and prepared with care
+          for every kind of coffee moment.
         </p>
-      </div>
+      </header>
 
-      <style>
-        {`
-          @keyframes menu-cup-float {
-            0%, 100% { transform: translateY(0) rotate(-4deg); }
-            50% { transform: translateY(-8px) rotate(4deg); }
-          }
+      {featuredProducts.length > 0 && (
+        <div className="products-grid" aria-label="Featured coffee products">
+          {featuredProducts.map((product, index) => {
+            const image =
+              product.image || product.imageUrl || product.photo || product.src;
+            const name = product.name || product.title || "Featured Coffee";
+            const description =
+              product.description || product.details || "Made fresh with carefully selected coffee beans.";
+            const price = product.price;
 
-          @media (prefers-reduced-motion: reduce) {
-            .menu-highlights span { animation: none; }
-          }
-        `}
-      </style>
+            return (
+              <article
+                className="product-card"
+                key={product.id ?? product.slug ?? name ?? index}
+              >
+                {image ? (
+                  <img
+                    className="product-image"
+                    src={image}
+                    alt={product.imageAlt || name}
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="product-image" role="img" aria-label={name}>
+                    <span aria-hidden="true">☕</span>
+                  </div>
+                )}
+                <div className="product-info">
+                  <h3 className="product-name">{name}</h3>
+                  <p className="product-description">{description}</p>
+                  {price != null && (
+                    <p className="product-price">
+                      {typeof price === "number" ? `$${price.toFixed(2)}` : price}
+                    </p>
+                  )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      )}
     </section>
-  )
+  );
 }
 
-export default MenuHighlights
+export default MenuHighlights;
