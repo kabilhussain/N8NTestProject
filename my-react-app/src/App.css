@@ -6,9 +6,30 @@
 .products-section,
 .our-coffee,
 .coffee-section,
-.why-choose-us {
-  color: var(--coffee-dark, #3b2418);
+.why-choose-us,
+.why-choose-us-section {
+  position: relative;
+  padding: clamp(3.5rem, 7vw, 6rem) clamp(1rem, 5vw, 2rem);
+  color: var(--coffee-espresso, #38251b);
   text-align: center;
+  background-color: var(--coffee-cream, #faf6ef);
+}
+
+.menu-highlights,
+.menu-highlights-section,
+.menu-section,
+.why-choose-us,
+.why-choose-us-section {
+  background:
+    radial-gradient(ellipse at top, rgb(188 130 80 / 10%), transparent 58%),
+    var(--coffee-cream, #faf6ef);
+}
+
+.products,
+.products-section,
+.our-coffee,
+.coffee-section {
+  background-color: var(--coffee-milk, #fffdf9);
 }
 
 .menu-highlights > h2,
@@ -19,6 +40,7 @@
 .our-coffee > h2,
 .coffee-section > h2,
 .why-choose-us > h2,
+.why-choose-us-section > h2,
 .menu-highlights .section-title,
 .menu-highlights-section .section-title,
 .menu-section .section-title,
@@ -26,8 +48,10 @@
 .products-section .section-title,
 .our-coffee .section-title,
 .coffee-section .section-title,
-.why-choose-us .section-title {
-  margin-inline: auto;
+.why-choose-us .section-title,
+.why-choose-us-section .section-title {
+  margin: 0 auto 1rem;
+  color: var(--coffee-espresso, #38251b);
   text-align: center;
 }
 
@@ -38,9 +62,13 @@
 .products-section > p,
 .our-coffee > p,
 .coffee-section > p,
-.why-choose-us > p {
-  margin-inline: auto;
+.why-choose-us > p,
+.why-choose-us-section > p {
+  max-width: 44rem;
+  margin: 0 auto 2rem;
+  color: var(--coffee-brown, #815334);
   text-align: center;
+  line-height: 1.7;
 }
 
 .menu-highlights .menu-grid,
@@ -81,7 +109,31 @@
 .coffee-section .product-card,
 .coffee-section .product-item {
   width: 100%;
+  padding: 1.25rem;
+  border: 1px solid rgb(129 83 52 / 12%);
+  border-radius: 1rem;
+  background: var(--coffee-milk, #fffdf9);
+  box-shadow: 0 10px 28px rgb(56 37 27 / 8%);
   text-align: center;
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.menu-highlights .menu-card:hover,
+.menu-highlights .menu-item:hover,
+.menu-highlights-section .menu-card:hover,
+.menu-highlights-section .menu-item:hover,
+.menu-section .menu-card:hover,
+.menu-section .menu-item:hover,
+.products .product-card:hover,
+.products .product-item:hover,
+.products-section .product-card:hover,
+.products-section .product-item:hover,
+.our-coffee .product-card:hover,
+.our-coffee .product-item:hover,
+.coffee-section .product-card:hover,
+.coffee-section .product-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 34px rgb(56 37 27 / 13%);
 }
 
 .menu-highlights .menu-card img,
@@ -99,23 +151,61 @@
 .coffee-section .product-card img,
 .coffee-section .product-item img {
   display: block;
+  max-width: 100%;
   margin-inline: auto;
+  border-radius: 0.75rem;
 }
 
 .why-choose-us .features,
 .why-choose-us .feature-grid,
-.why-choose-us .reasons-grid {
+.why-choose-us .reasons-grid,
+.why-choose-us-section .features,
+.why-choose-us-section .feature-grid,
+.why-choose-us-section .reasons-grid {
   width: min(100%, 1100px);
-  margin-inline: auto;
+  margin: 2rem auto 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-items: center;
+  align-items: stretch;
   gap: 1.5rem;
 }
 
 .why-choose-us .feature,
 .why-choose-us .reason,
-.why-choose-us .feature-card {
+.why-choose-us .feature-card,
+.why-choose-us-section .feature,
+.why-choose-us-section .reason,
+.why-choose-us-section .feature-card {
+  width: 100%;
+  padding: 1.5rem;
+  border: 1px solid rgb(129 83 52 / 12%);
+  border-radius: 1rem;
+  background: var(--coffee-milk, #fffdf9);
+  box-shadow: 0 10px 28px rgb(56 37 27 / 7%);
+  text-align: center;
+}
+
+/* Keep footer contact groups in one centered row on wider screens. */
+footer .footer-content,
+footer .footer-container,
+.site-footer .footer-content,
+.site-footer .footer-container {
+  width: min(100% - 2rem, 1100px);
+  margin-inline: auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
+  align-items: start;
+  gap: 1.5rem;
+  text-align: center;
+}
+
+footer .footer-section,
+footer .footer-column,
+.site-footer .footer-section,
+.site-footer .footer-column {
+  width: 100%;
   text-align: center;
 }
 
@@ -161,9 +251,20 @@
   .coffee-section .product-grid,
   .why-choose-us .features,
   .why-choose-us .feature-grid,
-  .why-choose-us .reasons-grid {
+  .why-choose-us .reasons-grid,
+  .why-choose-us-section .features,
+  .why-choose-us-section .feature-grid,
+  .why-choose-us-section .reasons-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1.25rem;
+  }
+
+  footer .footer-content,
+  footer .footer-container,
+  .site-footer .footer-content,
+  .site-footer .footer-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1rem;
   }
 }
 
@@ -184,7 +285,17 @@
   .coffee-section .product-grid,
   .why-choose-us .features,
   .why-choose-us .feature-grid,
-  .why-choose-us .reasons-grid {
+  .why-choose-us .reasons-grid,
+  .why-choose-us-section .features,
+  .why-choose-us-section .feature-grid,
+  .why-choose-us-section .reasons-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  footer .footer-content,
+  footer .footer-container,
+  .site-footer .footer-content,
+  .site-footer .footer-container {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -194,5 +305,22 @@
   .cup-animation,
   .floating-cup {
     animation: none;
+  }
+
+  .menu-highlights .menu-card,
+  .menu-highlights .menu-item,
+  .menu-highlights-section .menu-card,
+  .menu-highlights-section .menu-item,
+  .menu-section .menu-card,
+  .menu-section .menu-item,
+  .products .product-card,
+  .products .product-item,
+  .products-section .product-card,
+  .products-section .product-item,
+  .our-coffee .product-card,
+  .our-coffee .product-item,
+  .coffee-section .product-card,
+  .coffee-section .product-item {
+    transition: none;
   }
 }
