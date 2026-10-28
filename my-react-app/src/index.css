@@ -1,6 +1,5 @@
 :root {
   color-scheme: light;
-
   --text: #514238;
   --text-h: #302017;
   --bg: #faf6ef;
@@ -8,31 +7,20 @@
   --surface-soft: #f3eadc;
   --border: #e6d8c5;
   --code-bg: #f1e7d8;
-
   --accent: #9a6038;
   --accent-strong: #704126;
   --accent-bg: rgb(154 96 56 / 10%);
   --accent-border: rgb(154 96 56 / 38%);
   --social-bg: rgb(243 234 220 / 75%);
   --shadow: 0 16px 40px rgb(62 39 24 / 10%), 0 4px 12px rgb(62 39 24 / 6%);
-
   --coffee-cream: #faf6ef;
   --coffee-milk: #fffdf9;
   --coffee-oat: #eadbc5;
   --coffee-caramel: #bc8250;
   --coffee-brown: #815334;
   --coffee-espresso: #38251b;
-
   --sans: "Segoe UI", Roboto, Arial, sans-serif;
   --heading: Georgia, "Times New Roman", serif;
-
-  font-family: var(--sans);
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 *,
@@ -42,14 +30,17 @@
 }
 
 html {
-  min-width: 320px;
+  width: 100%;
+  min-width: 0;
   scroll-behavior: smooth;
   scroll-padding-top: 5rem;
   background: var(--bg);
+  overflow-x: clip;
 }
 
 body {
-  min-width: 320px;
+  width: 100%;
+  min-width: 0;
   min-height: 100vh;
   margin: 0;
   background: var(--bg);
@@ -57,16 +48,44 @@ body {
   font-family: var(--sans);
   font-size: 1rem;
   line-height: 1.65;
+  overflow-x: clip;
 }
 
 #root {
-  min-height: 100vh;
   display: flex;
+  width: 100%;
+  min-width: 0;
+  min-height: 100vh;
   flex-direction: column;
+}
+
+#root > * {
+  min-width: 0;
+}
+
+main,
+section,
+header,
+footer {
+  max-width: 100%;
 }
 
 main {
   width: 100%;
+  min-width: 0;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
 }
 
 h1,
@@ -75,156 +94,31 @@ h3,
 h4,
 h5,
 h6 {
-  margin: 0 0 0.75em;
   color: var(--text-h);
   font-family: var(--heading);
-  font-weight: 700;
-  line-height: 1.15;
-  text-wrap: balance;
-}
-
-h1 {
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
-  letter-spacing: -0.045em;
-}
-
-h2 {
-  font-size: clamp(2rem, 4vw, 3.25rem);
-  letter-spacing: -0.035em;
-}
-
-h3 {
-  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
-  letter-spacing: -0.02em;
-}
-
-h4,
-h5,
-h6 {
-  font-size: 1.15rem;
+  line-height: 1.2;
+  overflow-wrap: anywhere;
 }
 
 p {
-  margin: 0 0 1rem;
-  text-wrap: pretty;
-}
-
-a {
-  color: var(--accent-strong);
-  text-decoration-thickness: 1px;
-  text-underline-offset: 0.2em;
-  transition: color 180ms ease, text-decoration-color 180ms ease;
-}
-
-a:hover {
-  color: var(--coffee-espresso);
+  overflow-wrap: break-word;
 }
 
 button,
 input,
 select,
 textarea {
+  max-width: 100%;
   font: inherit;
 }
 
-button {
-  color: inherit;
-  cursor: pointer;
-}
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.65;
-}
-
-img,
-svg,
-video {
-  max-width: 100%;
-}
-
-img {
-  display: block;
-}
-
-ul,
-ol {
-  padding-inline-start: 1.35em;
+a {
+  color: var(--accent-strong);
 }
 
 :focus-visible {
   outline: 3px solid var(--coffee-caramel);
   outline-offset: 3px;
-}
-
-::selection {
-  color: var(--coffee-espresso);
-  background: #e9c9a5;
-}
-
-/* Shared motion hooks for decorative coffee cups and steam. */
-.coffee-cup-animation,
-.coffee-cup--floating {
-  transform-origin: center bottom;
-  animation: coffee-cup-float 4.5s ease-in-out infinite;
-}
-
-.coffee-steam,
-.coffee-steam::before,
-.coffee-steam::after {
-  animation: coffee-steam-rise 2.8s ease-in-out infinite;
-}
-
-.coffee-steam::before,
-.coffee-steam::after {
-  content: "";
-  position: absolute;
-}
-
-.coffee-steam::before {
-  animation-delay: 0.45s;
-}
-
-.coffee-steam::after {
-  animation-delay: 0.9s;
-}
-
-@keyframes coffee-cup-float {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(1deg);
-  }
-}
-
-@keyframes coffee-steam-rise {
-  0% {
-    opacity: 0;
-    transform: translateY(8px) scaleX(0.85);
-  }
-
-  35% {
-    opacity: 0.7;
-  }
-
-  100% {
-    opacity: 0;
-    transform: translateY(-18px) scaleX(1.1);
-  }
-}
-
-@media (max-width: 640px) {
-  body {
-    font-size: 0.95rem;
-    line-height: 1.6;
-  }
-
-  html {
-    scroll-padding-top: 4rem;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
