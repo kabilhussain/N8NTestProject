@@ -1,261 +1,167 @@
-.hero,
-.hero-section {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(3.5rem, 8vw, 7rem) clamp(1.25rem, 5vw, 5rem);
-  color: var(--coffee-espresso, #38251b);
-  background:
-    radial-gradient(ellipse at 78% 45%, rgb(188 130 80 / 16%), transparent 34%),
-    linear-gradient(135deg, var(--coffee-cream, #faf6ef), #f3e6d4);
-}
-
 .hero-container {
   position: relative;
+  isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1.05fr) minmax(280px, 0.95fr);
   align-items: center;
-  gap: clamp(2rem, 6vw, 6rem);
-  width: min(100%, 1180px);
-  min-height: clamp(420px, 60vh, 680px);
+  gap: clamp(2rem, 6vw, 5rem);
+  width: min(100% - 2.5rem, 1200px);
+  min-height: clamp(520px, 76vh, 760px);
   margin-inline: auto;
+  padding-block: clamp(4rem, 8vw, 7rem);
+  color: var(--coffee-dark, #382419);
 }
 
 .hero-content {
   position: relative;
-  z-index: 2;
-  max-width: 620px;
-  padding-block: 1rem;
-}
-
-.hero-content h1 {
-  margin-bottom: 1.25rem;
-  color: var(--coffee-espresso, #38251b);
-  font-size: clamp(2.75rem, 6.2vw, 5.5rem);
-  line-height: 1.02;
-}
-
-.hero-content p {
-  max-width: 38rem;
-  margin-bottom: 1.75rem;
-  color: var(--text, #514238);
-  font-size: clamp(1rem, 1.5vw, 1.2rem);
-}
-
-.hero-content a,
-.hero-content button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 3rem;
-  padding: 0.8rem 1.5rem;
-  border: 1px solid var(--accent-strong, #704126);
-  border-radius: 999px;
-  color: var(--coffee-milk, #fffdf9);
-  background: var(--accent-strong, #704126);
-  font-weight: 700;
-  text-decoration: none;
-  transition: background-color 180ms ease, color 180ms ease, transform 180ms ease;
-}
-
-.hero-content a:hover,
-.hero-content button:hover {
-  transform: translateY(-2px);
-  color: var(--coffee-espresso, #38251b);
-  background: transparent;
+  z-index: 1;
+  max-width: 640px;
 }
 
 .hero-artwork {
   position: relative;
-  isolation: isolate;
   display: grid;
   place-items: center;
-  width: 100%;
   min-width: 0;
-  min-height: clamp(320px, 42vw, 500px);
+  min-height: clamp(320px, 40vw, 500px);
   border-radius: 50%;
-  background: radial-gradient(ellipse, rgb(188 130 80 / 20%) 0%, rgb(188 130 80 / 8%) 45%, transparent 72%);
+  background:
+    radial-gradient(circle at 50% 48%, rgb(255 250 240 / 92%) 0 34%, transparent 35%),
+    radial-gradient(circle at 50% 50%, rgb(222 188 145 / 40%), rgb(222 188 145 / 0%) 70%);
 }
 
-.hero-artwork::before {
-  position: absolute;
-  z-index: -1;
-  width: min(78%, 390px);
-  aspect-ratio: 1;
-  border: 1px solid rgb(129 83 52 / 20%);
-  border-radius: 50%;
-  content: "";
-}
-
+.hero-artwork::before,
 .hero-artwork::after {
   position: absolute;
   z-index: -1;
-  width: min(58%, 290px);
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: rgb(188 130 80 / 10%);
+  display: block;
   content: "";
+  border: 1px solid rgb(116 75 48 / 16%);
+  border-radius: 50%;
+  pointer-events: none;
 }
 
-/* Cup wrappers form a deliberate, layered arrangement around the artwork. */
-.hero-artwork .cup-wrapper,
-.hero-artwork .coffee-cup-wrapper,
-.hero-artwork .hero-cup-wrapper,
-.hero-artwork .cup-artwork,
-.hero-artwork .coffee-cup,
-.hero-artwork .floating-cup {
-  position: absolute;
+.hero-artwork::before {
+  width: 78%;
+  aspect-ratio: 1;
+}
+
+.hero-artwork::after {
+  width: 94%;
+  aspect-ratio: 1;
+  border-style: dashed;
+  opacity: 0.7;
+}
+
+.hero-artwork__cup-wrap {
+  position: relative;
   display: grid;
   place-items: center;
-  transform-origin: center bottom;
-  animation: hero-cup-float 4.2s ease-in-out infinite;
+  width: min(76%, 360px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(116 75 48 / 12%);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fffaf0, #ead5bb);
+  box-shadow:
+    0 28px 70px rgb(67 42 25 / 17%),
+    inset 0 2px 12px rgb(255 255 255 / 80%);
 }
 
-.hero-artwork .cup-wrapper:nth-of-type(1),
-.hero-artwork .coffee-cup-wrapper:nth-of-type(1),
-.hero-artwork .hero-cup-wrapper:nth-of-type(1),
-.hero-artwork .cup-artwork:nth-of-type(1),
-.hero-artwork .coffee-cup:nth-of-type(1),
-.hero-artwork .floating-cup:nth-of-type(1) {
-  z-index: 2;
-  bottom: 8%;
-  left: 8%;
-  animation-delay: -0.6s;
+.hero-artwork__cup-wrap::before,
+.hero-artwork__cup-wrap::after {
+  position: absolute;
+  content: "";
+  border-radius: 50%;
+  background: var(--coffee-medium, #a96f45);
+  opacity: 0.75;
 }
 
-.hero-artwork .cup-wrapper:nth-of-type(2),
-.hero-artwork .coffee-cup-wrapper:nth-of-type(2),
-.hero-artwork .hero-cup-wrapper:nth-of-type(2),
-.hero-artwork .cup-artwork:nth-of-type(2),
-.hero-artwork .coffee-cup:nth-of-type(2),
-.hero-artwork .floating-cup:nth-of-type(2) {
-  z-index: 3;
-  top: 10%;
-  left: 35%;
-  animation-delay: -1.8s;
+.hero-artwork__cup-wrap::before {
+  top: 14%;
+  right: 12%;
+  width: 12px;
+  height: 12px;
+  box-shadow: -235px 190px 0 -3px var(--coffee-medium, #a96f45);
 }
 
-.hero-artwork .cup-wrapper:nth-of-type(3),
-.hero-artwork .coffee-cup-wrapper:nth-of-type(3),
-.hero-artwork .hero-cup-wrapper:nth-of-type(3),
-.hero-artwork .cup-artwork:nth-of-type(3),
-.hero-artwork .coffee-cup:nth-of-type(3),
-.hero-artwork .floating-cup:nth-of-type(3) {
-  z-index: 1;
-  right: 5%;
-  bottom: 12%;
-  animation-delay: -2.7s;
+.hero-artwork__cup-wrap::after {
+  right: 19%;
+  bottom: 18%;
+  width: 8px;
+  height: 8px;
+  opacity: 0.45;
 }
 
-.hero-artwork .cup-one,
-.hero-artwork .cup-left {
-  z-index: 2;
-  bottom: 8%;
-  left: 8%;
-}
-
-.hero-artwork .cup-two,
-.hero-artwork .cup-center {
-  z-index: 3;
-  top: 10%;
-  left: 35%;
-  animation-delay: -1.8s;
-}
-
-.hero-artwork .cup-three,
-.hero-artwork .cup-right {
-  z-index: 1;
-  right: 5%;
-  bottom: 12%;
-  animation-delay: -2.7s;
-}
-
-.hero-artwork img {
+.hero-artwork__cup {
+  position: relative;
   display: block;
-  width: min(100%, 230px);
+  width: 76%;
+  max-width: 280px;
   height: auto;
+  color: var(--coffee-dark, #382419);
+  font-size: clamp(7rem, 15vw, 12rem);
+  line-height: 1;
+  text-align: center;
   object-fit: contain;
-  filter: drop-shadow(0 18px 18px rgb(56 37 27 / 18%));
+  filter: drop-shadow(0 18px 12px rgb(57 35 22 / 24%));
+  transform-origin: 50% 75%;
 }
 
-@keyframes hero-cup-float {
+.cup-float {
+  animation: cup-float 4.8s ease-in-out infinite;
+  will-change: transform;
+}
+
+@keyframes cup-float {
   0%,
   100% {
-    transform: translateY(0) rotate(-3deg);
+    transform: translate3d(0, 0, 0) rotate(-2deg);
   }
 
   50% {
-    transform: translateY(-12px) rotate(2deg);
+    transform: translate3d(0, -16px, 0) rotate(2deg);
   }
 }
 
 @media (max-width: 760px) {
-  .hero,
-  .hero-section {
-    padding: 3.5rem 1.25rem;
-  }
-
   .hero-container {
-    grid-template-columns: minmax(0, 1fr);
+    grid-template-columns: 1fr;
     gap: 1.5rem;
+    width: min(100% - 2rem, 640px);
     min-height: auto;
+    padding-block: clamp(3.5rem, 12vw, 5rem);
     text-align: center;
   }
 
   .hero-content {
-    max-width: 680px;
-    margin-inline: auto;
-  }
-
-  .hero-content p {
     margin-inline: auto;
   }
 
   .hero-artwork {
-    width: min(100%, 520px);
-    min-height: clamp(280px, 70vw, 390px);
+    width: min(100%, 440px);
+    min-height: clamp(280px, 76vw, 400px);
     margin-inline: auto;
   }
 
-  .hero-artwork img {
-    width: min(100%, 175px);
+  .hero-artwork__cup-wrap {
+    width: min(76%, 310px);
   }
 }
 
-@media (max-width: 440px) {
+@media (max-width: 420px) {
+  .hero-container {
+    width: min(100% - 1.5rem, 380px);
+  }
+
   .hero-artwork {
     min-height: 270px;
-  }
-
-  .hero-artwork .cup-wrapper:nth-of-type(1),
-  .hero-artwork .coffee-cup-wrapper:nth-of-type(1),
-  .hero-artwork .hero-cup-wrapper:nth-of-type(1),
-  .hero-artwork .cup-artwork:nth-of-type(1),
-  .hero-artwork .coffee-cup:nth-of-type(1),
-  .hero-artwork .floating-cup:nth-of-type(1),
-  .hero-artwork .cup-one,
-  .hero-artwork .cup-left {
-    left: 1%;
-  }
-
-  .hero-artwork .cup-wrapper:nth-of-type(3),
-  .hero-artwork .coffee-cup-wrapper:nth-of-type(3),
-  .hero-artwork .hero-cup-wrapper:nth-of-type(3),
-  .hero-artwork .cup-artwork:nth-of-type(3),
-  .hero-artwork .coffee-cup:nth-of-type(3),
-  .hero-artwork .floating-cup:nth-of-type(3),
-  .hero-artwork .cup-three,
-  .hero-artwork .cup-right {
-    right: 1%;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-artwork .cup-wrapper,
-  .hero-artwork .coffee-cup-wrapper,
-  .hero-artwork .hero-cup-wrapper,
-  .hero-artwork .cup-artwork,
-  .hero-artwork .coffee-cup,
-  .hero-artwork .floating-cup {
+  .cup-float {
     animation: none;
+    transform: none;
+    will-change: auto;
   }
 }
