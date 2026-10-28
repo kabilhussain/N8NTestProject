@@ -1,66 +1,76 @@
 .footer {
-  background-color: #fdf7f0;
-  color: #5b4a42;
-  padding: 40px 20px;
-  border-top: 1px solid #e5e4e0;
+  width: 100%;
+  padding: 3.5rem 1.5rem 2.5rem;
+  background: var(--coffee-espresso);
+  color: var(--coffee-cream);
+  text-align: center;
+}
+
+.footer-container {
+  width: min(100%, 1100px);
+  margin: 0 auto;
 }
 
 .footer-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  max-width: 1126px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: start;
+  justify-items: center;
+  gap: 2.5rem;
+  width: 100%;
   margin: 0 auto;
-  flex-wrap: wrap;
-  gap: 30px;
 }
 
-.footer-address,
-.footer-hours,
-.footer-social {
-  flex: 1;
-  min-width: 200px;
+.footer-section {
+  width: 100%;
+  max-width: 300px;
+  text-align: center;
 }
 
-.footer-address p,
-.footer-hours p {
-  font-size: 14px;
-  font-weight: 300;
-  margin: 6px 0;
-  line-height: 1.5;
+.footer-section h2,
+.footer-section h3 {
+  margin: 0 0 1rem;
+  color: var(--coffee-caramel);
+  font-size: 1.15rem;
+  font-weight: 700;
 }
 
-.footer-social a {
-  font-size: 14px;
-  font-weight: 400;
-  color: #8b5e3c;
+.footer-section p {
+  margin: 0.4rem 0;
+  color: var(--coffee-cream);
+  line-height: 1.7;
+  text-align: center;
+}
+
+.footer-section a {
+  color: var(--coffee-milk);
   text-decoration: none;
-  margin-right: 15px;
-  transition: color 0.3s ease;
+  transition: color 180ms ease;
 }
 
-.footer-social a:last-child {
-  margin-right: 0;
+.footer-section a:hover {
+  color: var(--coffee-oat);
 }
 
-.footer-social a:hover {
-  color: #a97458;
+.footer-bottom {
+  margin: 2.5rem auto 0;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--coffee-brown);
+  color: var(--coffee-oat);
+  text-align: center;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 700px) {
+  .footer {
+    padding: 3rem 1.25rem 2rem;
+  }
+
   .footer-content {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+    grid-template-columns: 1fr;
+    gap: 2rem;
   }
 
-  .footer-address,
-  .footer-hours,
-  .footer-social {
-    width: 100%;
-  }
-
-  .footer-social a {
-    margin: 0 10px 10px 0;
+  .footer-section {
+    max-width: 360px;
   }
 }
