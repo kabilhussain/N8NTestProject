@@ -1,29 +1,46 @@
-/* Keep every route within the viewport while preserving normal vertical scrolling. */
-html,
-body,
+:root {
+  --coffee-espresso: #2b1711;
+  --coffee-dark: #3c2419;
+  --coffee-brown: #68432f;
+  --coffee-caramel: #bd8654;
+  --coffee-cream: #f6efe5;
+  --coffee-white: #fffaf4;
+  --coffee-text: #33231c;
+  --coffee-muted: #76665c;
+  --coffee-border: rgba(60, 36, 25, 0.14);
+  --coffee-shadow: 0 12px 30px rgba(43, 23, 17, 0.1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  width: 100%;
+  min-width: 0;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  color: var(--coffee-text);
+  background: var(--coffee-cream);
+  font-family: inherit;
+}
+
 #root {
   width: 100%;
-  max-width: 100%;
-}
-
-body,
-#root {
-  overflow-x: clip;
-}
-
-main,
-section,
-footer,
-header {
   min-width: 0;
-  max-width: 100%;
 }
 
 img,
 svg,
 video,
-canvas,
-iframe {
+canvas {
   max-width: 100%;
 }
 
@@ -33,142 +50,245 @@ img {
 
 button,
 input,
-select,
-textarea {
+textarea,
+select {
   max-width: 100%;
+  font: inherit;
 }
 
-/* Shared coffee-colored section treatment and flexible content widths. */
+.landing-page,
+.app,
+main,
+header,
+footer,
 section {
-  padding-inline: clamp(1rem, 5vw, 4rem);
+  min-width: 0;
 }
 
+.landing-page,
+.app {
+  width: 100%;
+  overflow-wrap: anywhere;
+}
+
+section {
+  padding: clamp(3rem, 7vw, 6rem) clamp(1rem, 5vw, 5rem);
+}
+
+.section-inner,
 .container,
-.section-container,
-.content-wrapper,
-.section-content {
-  width: min(100%, 76rem);
+.content-wrap {
+  width: min(100%, 1200px);
+  min-width: 0;
   margin-inline: auto;
 }
 
 section h1,
 section h2,
 section h3,
-footer h1,
+section p,
 footer h2,
-footer h3 {
-  color: var(--text-h, #302017);
-}
-
-section a,
-footer a {
+footer h3,
+footer p {
   overflow-wrap: anywhere;
 }
 
-/* Let card and feature layouts gracefully reduce their column count. */
-.coffee-grid,
+.menu-section,
+.highlights-section,
+.features-section,
+.about-section,
+.testimonials-section {
+  background-color: var(--coffee-cream);
+}
+
+.menu-section h2,
+.highlights-section h2,
+.features-section h2,
+.about-section h2,
+.testimonials-section h2 {
+  color: var(--coffee-espresso);
+}
+
 .menu-grid,
-.menu-highlights-grid,
-.highlight-grid,
-.highlights-grid,
-.product-grid,
-.products-grid,
-.cards-grid,
-.feature-grid,
 .features-grid,
-.benefits-grid,
-.why-choose-us-grid,
-[class*="card-grid"],
-[class*="cards-grid"] {
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
-  min-width: 0;
-}
-
-.coffee-grid > *,
-.menu-grid > *,
-.menu-highlights-grid > *,
-.highlight-grid > *,
-.highlights-grid > *,
-.product-grid > *,
-.products-grid > *,
-.cards-grid > *,
-.feature-grid > *,
-.features-grid > *,
-.benefits-grid > *,
-.why-choose-us-grid > * {
-  min-width: 0;
-}
-
-/* Footer columns wrap instead of forcing a horizontal scrollbar. */
-footer .footer-container,
-footer .footer-content,
-footer .footer-columns,
-footer .footer-grid,
-.footer-container,
-.footer-content,
-.footer-columns,
-.footer-grid {
-  width: 100%;
-  max-width: 100%;
-  min-width: 0;
-}
-
-.footer-columns,
+.feature-grid,
+.about-grid,
+.testimonials-grid,
+.testimonial-grid,
+.landing-grid,
 .footer-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: clamp(1rem, 2.5vw, 2rem);
+  width: 100%;
+  min-width: 0;
+}
+
+.menu-item,
+.menu-card,
+.feature-card,
+.highlight-card,
+.product-card,
+.testimonial-card,
+.about-card {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  border: 1px solid var(--coffee-border);
+  border-radius: 1rem;
+  background: var(--coffee-white);
+  box-shadow: var(--coffee-shadow);
+}
+
+.menu-item {
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1rem, 2.5vw, 1.5rem);
+  color: var(--coffee-text);
+}
+
+.menu-item img,
+.menu-card img,
+.feature-card img,
+.highlight-card img,
+.product-card img {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  border-radius: 0.75rem;
+  object-fit: cover;
+}
+
+.menu-item h3,
+.menu-card h3,
+.feature-card h3,
+.highlight-card h3,
+.product-card h3 {
+  color: var(--coffee-dark);
+  overflow-wrap: anywhere;
+}
+
+.menu-item p,
+.menu-card p,
+.feature-card p,
+.highlight-card p,
+.product-card p {
+  color: var(--coffee-muted);
+  overflow-wrap: anywhere;
+}
+
+.menu-item a,
+.menu-card a,
+.feature-card a,
+.highlight-card a,
+.product-card a {
+  overflow-wrap: anywhere;
+}
+
+footer {
+  min-width: 0;
+  padding: clamp(2.5rem, 6vw, 4.5rem) clamp(1rem, 5vw, 5rem);
+  color: var(--coffee-cream);
+  background: var(--coffee-espresso);
+}
+
+footer a {
+  color: inherit;
+  overflow-wrap: anywhere;
+}
+
+.footer-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: clamp(1rem, 3vw, 2.5rem);
 }
 
-footer p,
-footer li,
-footer address {
+.footer-grid > *,
+footer .footer-column {
+  min-width: 0;
   overflow-wrap: anywhere;
 }
 
-/* A gentle floating motion for decorative coffee-cup elements. */
 .coffee-cup,
 .cup-animation,
-.coffee-cup-animation,
-.floating-cup {
-  transform-origin: 50% 85%;
+.animated-cup {
+  transform-origin: center bottom;
   animation: coffee-cup-float 3.6s ease-in-out infinite;
+}
+
+.coffee-steam,
+.steam {
+  transform-origin: center bottom;
+  animation: coffee-steam-rise 2.4s ease-in-out infinite;
 }
 
 @keyframes coffee-cup-float {
   0%,
   100% {
-    transform: translateY(0) rotate(-1deg);
+    transform: translateY(0) rotate(0);
   }
 
   50% {
-    transform: translateY(-0.55rem) rotate(1deg);
+    transform: translateY(-8px) rotate(-2deg);
   }
 }
 
-@media (max-width: 640px) {
+@keyframes coffee-steam-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(6px) scaleX(0.8);
+  }
+
+  50% {
+    opacity: 0.75;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(-10px) scaleX(1.1);
+  }
+}
+
+@media (max-width: 767px) {
+  .menu-grid,
+  .features-grid,
+  .feature-grid,
+  .about-grid,
+  .testimonials-grid,
+  .testimonial-grid,
+  .landing-grid,
+  .footer-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 519px) {
   section {
-    padding-inline: 1rem;
+    padding: clamp(2.5rem, 10vw, 3.5rem) 1rem;
   }
 
-  .container,
-  .section-container,
-  .content-wrapper,
-  .section-content {
-    width: 100%;
-  }
-
-  .footer-columns,
+  .menu-grid,
+  .features-grid,
+  .feature-grid,
+  .about-grid,
+  .testimonials-grid,
+  .testimonial-grid,
+  .landing-grid,
   .footer-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  footer {
+    padding: 2.5rem 1rem;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .coffee-cup,
-  .cup-animation,
-  .coffee-cup-animation,
-  .floating-cup {
-    animation: none;
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
