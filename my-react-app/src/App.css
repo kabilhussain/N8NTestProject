@@ -1,185 +1,198 @@
-:root {
-  --app-coffee-cream: var(--coffee-cream, #f8f1e7);
-  --app-coffee-paper: var(--coffee-paper, #fffaf3);
-  --app-coffee-brown: var(--coffee-brown, #4b2e22);
-  --app-coffee-dark: var(--coffee-dark, #342017);
-  --app-coffee-caramel: var(--coffee-caramel, #b8753b);
-  --app-coffee-muted: var(--coffee-muted, #765f50);
-  --app-coffee-motion: var(--motion-standard, 280ms ease);
-}
-
+/* Landing-page sections */
+.menu-highlights,
+.menu-highlights-section,
+.menu-section,
+.products,
 .products-section,
-.why-choose-us,
-.why-choose-us-section,
-section[class*="why-choose"],
-section[class*="WhyChoose"] {
-  box-sizing: border-box;
-  width: 100%;
+.our-coffee,
+.coffee-section,
+.why-choose-us {
+  color: var(--coffee-dark, #3b2418);
+  text-align: center;
+}
+
+.menu-highlights > h2,
+.menu-highlights-section > h2,
+.menu-section > h2,
+.products > h2,
+.products-section > h2,
+.our-coffee > h2,
+.coffee-section > h2,
+.why-choose-us > h2,
+.menu-highlights .section-title,
+.menu-highlights-section .section-title,
+.menu-section .section-title,
+.products .section-title,
+.products-section .section-title,
+.our-coffee .section-title,
+.coffee-section .section-title,
+.why-choose-us .section-title {
   margin-inline: auto;
-  padding: clamp(3.5rem, 7vw, 6rem) clamp(1.25rem, 5vw, 2.5rem);
-  color: var(--app-coffee-dark);
   text-align: center;
 }
 
-.products-section {
-  background: var(--app-coffee-cream);
-}
-
-.why-choose-us,
-.why-choose-us-section,
-section[class*="why-choose"],
-section[class*="WhyChoose"] {
-  background: var(--app-coffee-paper);
-}
-
-.products-section h1,
-.products-section h2,
-.products-section h3,
-.why-choose-us h1,
-.why-choose-us h2,
-.why-choose-us h3,
-.why-choose-us-section h1,
-.why-choose-us-section h2,
-.why-choose-us-section h3,
-section[class*="why-choose"] h1,
-section[class*="why-choose"] h2,
-section[class*="why-choose"] h3,
-section[class*="WhyChoose"] h1,
-section[class*="WhyChoose"] h2,
-section[class*="WhyChoose"] h3 {
-  margin: 0 auto 1rem;
-  color: var(--app-coffee-brown);
-  text-align: center;
-}
-
+.menu-highlights > p,
+.menu-highlights-section > p,
+.menu-section > p,
+.products > p,
 .products-section > p,
-.products-section > div > p,
-.why-choose-us > p,
-.why-choose-us-section > p,
-section[class*="why-choose"] > p,
-section[class*="WhyChoose"] > p {
-  max-width: 44rem;
-  margin: 0 auto 2.25rem;
-  color: var(--app-coffee-muted);
-  line-height: 1.75;
+.our-coffee > p,
+.coffee-section > p,
+.why-choose-us > p {
+  margin-inline: auto;
   text-align: center;
 }
 
-.products-grid {
+.menu-highlights .menu-grid,
+.menu-highlights .menu-highlights-grid,
+.menu-highlights-section .menu-grid,
+.menu-highlights-section .menu-highlights-grid,
+.menu-section .menu-grid,
+.menu-section .menu-highlights-grid,
+.products .products-grid,
+.products .product-grid,
+.products-section .products-grid,
+.products-section .product-grid,
+.our-coffee .products-grid,
+.our-coffee .product-grid,
+.coffee-section .products-grid,
+.coffee-section .product-grid {
+  width: min(100%, 1100px);
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
-  width: min(100%, 1120px);
-  margin: 2.5rem auto 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  justify-items: center;
   align-items: stretch;
-  justify-items: center;
+  gap: 1.5rem;
 }
 
-.products-grid > * {
-  box-sizing: border-box;
+.menu-highlights .menu-card,
+.menu-highlights .menu-item,
+.menu-highlights-section .menu-card,
+.menu-highlights-section .menu-item,
+.menu-section .menu-card,
+.menu-section .menu-item,
+.products .product-card,
+.products .product-item,
+.products-section .product-card,
+.products-section .product-item,
+.our-coffee .product-card,
+.our-coffee .product-item,
+.coffee-section .product-card,
+.coffee-section .product-item {
   width: 100%;
-  max-width: 360px;
   text-align: center;
 }
 
-.why-choose-us .why-choose-us-content,
-.why-choose-us-section .why-choose-us-content,
-section[class*="why-choose"] .why-choose-us-content,
-section[class*="WhyChoose"] .why-choose-us-content,
-.why-choose-us .benefits-grid,
-.why-choose-us-section .benefits-grid,
-section[class*="why-choose"] .benefits-grid,
-section[class*="WhyChoose"] .benefits-grid {
-  width: min(100%, 1120px);
-  margin: 2.5rem auto 0;
+.menu-highlights .menu-card img,
+.menu-highlights .menu-item img,
+.menu-highlights-section .menu-card img,
+.menu-highlights-section .menu-item img,
+.menu-section .menu-card img,
+.menu-section .menu-item img,
+.products .product-card img,
+.products .product-item img,
+.products-section .product-card img,
+.products-section .product-item img,
+.our-coffee .product-card img,
+.our-coffee .product-item img,
+.coffee-section .product-card img,
+.coffee-section .product-item img {
+  display: block;
+  margin-inline: auto;
 }
 
-.why-choose-us .benefits-grid,
-.why-choose-us-section .benefits-grid,
-section[class*="why-choose"] .benefits-grid,
-section[class*="WhyChoose"] .benefits-grid {
+.why-choose-us .features,
+.why-choose-us .feature-grid,
+.why-choose-us .reasons-grid {
+  width: min(100%, 1100px);
+  margin-inline: auto;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
-  gap: clamp(1.25rem, 3vw, 2rem);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   justify-items: center;
+  gap: 1.5rem;
 }
 
-.why-choose-us .benefits-grid > *,
-.why-choose-us-section .benefits-grid > *,
-section[class*="why-choose"] .benefits-grid > *,
-section[class*="WhyChoose"] .benefits-grid > * {
-  box-sizing: border-box;
-  width: 100%;
-  max-width: 360px;
+.why-choose-us .feature,
+.why-choose-us .reason,
+.why-choose-us .feature-card {
   text-align: center;
 }
 
+/* Gentle motion for decorative coffee cups */
 .coffee-cup,
-.floating-cup,
 .cup-animation,
-.coffee-cup-animation {
-  transform-origin: 50% 85%;
-  animation: coffee-cup-bob 3.2s ease-in-out infinite;
+.floating-cup {
+  transform-origin: center bottom;
+  animation: coffee-cup-float 3.5s ease-in-out infinite;
 }
 
-.coffee-steam,
-.cup-steam {
-  transform-origin: bottom center;
-  animation: coffee-steam-rise 2.4s ease-in-out infinite;
+.coffee-cup:nth-child(2n),
+.cup-animation:nth-child(2n),
+.floating-cup:nth-child(2n) {
+  animation-delay: 0.45s;
 }
 
-@keyframes coffee-cup-bob {
+@keyframes coffee-cup-float {
   0%,
   100% {
     transform: translateY(0) rotate(0);
   }
 
   50% {
-    transform: translateY(-8px) rotate(-2deg);
+    transform: translateY(-8px) rotate(2deg);
   }
 }
 
-@keyframes coffee-steam-rise {
-  0%,
-  100% {
-    opacity: 0.35;
-    transform: translateY(3px) scale(0.95);
+@media (max-width: 768px) {
+  .menu-highlights .menu-grid,
+  .menu-highlights .menu-highlights-grid,
+  .menu-highlights-section .menu-grid,
+  .menu-highlights-section .menu-highlights-grid,
+  .menu-section .menu-grid,
+  .menu-section .menu-highlights-grid,
+  .products .products-grid,
+  .products .product-grid,
+  .products-section .products-grid,
+  .products-section .product-grid,
+  .our-coffee .products-grid,
+  .our-coffee .product-grid,
+  .coffee-section .products-grid,
+  .coffee-section .product-grid,
+  .why-choose-us .features,
+  .why-choose-us .feature-grid,
+  .why-choose-us .reasons-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.25rem;
   }
+}
 
-  50% {
-    opacity: 0.85;
-    transform: translateY(-5px) scale(1.05);
+@media (max-width: 520px) {
+  .menu-highlights .menu-grid,
+  .menu-highlights .menu-highlights-grid,
+  .menu-highlights-section .menu-grid,
+  .menu-highlights-section .menu-highlights-grid,
+  .menu-section .menu-grid,
+  .menu-section .menu-highlights-grid,
+  .products .products-grid,
+  .products .product-grid,
+  .products-section .products-grid,
+  .products-section .product-grid,
+  .our-coffee .products-grid,
+  .our-coffee .product-grid,
+  .coffee-section .products-grid,
+  .coffee-section .product-grid,
+  .why-choose-us .features,
+  .why-choose-us .feature-grid,
+  .why-choose-us .reasons-grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .coffee-cup,
-  .floating-cup,
   .cup-animation,
-  .coffee-cup-animation,
-  .coffee-steam,
-  .cup-steam {
+  .floating-cup {
     animation: none;
-  }
-
-  *,
-  *::before,
-  *::after {
-    scroll-behavior: auto !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-@media (max-width: 600px) {
-  .products-section,
-  .why-choose-us,
-  .why-choose-us-section,
-  section[class*="why-choose"],
-  section[class*="WhyChoose"] {
-    padding: 3.25rem 1rem;
-  }
-
-  .products-grid {
-    margin-top: 1.75rem;
   }
 }
