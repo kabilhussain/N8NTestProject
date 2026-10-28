@@ -1,301 +1,165 @@
-/* Landing-page sections */
-.menu-highlights,
-.menu-highlights-section,
-.menu-section,
-.products,
-.products-section,
-.our-coffee,
-.coffee-section,
-.why-choose-us,
-.why-choose-us-section {
-  position: relative;
-  padding: clamp(3.5rem, 7vw, 6rem) clamp(1rem, 5vw, 2rem);
-  color: var(--coffee-espresso, #38251b);
-  text-align: center;
-  background-color: var(--coffee-cream, #faf6ef);
-}
-
-.menu-highlights,
-.menu-highlights-section,
-.menu-section,
-.why-choose-us,
-.why-choose-us-section {
-  background:
-    radial-gradient(ellipse at top, rgb(188 130 80 / 10%), transparent 58%),
-    var(--coffee-cream, #faf6ef);
-}
-
-.products,
-.products-section,
-.our-coffee,
-.coffee-section {
-  background-color: var(--coffee-milk, #fffdf9);
-}
-
-.menu-highlights > h2,
-.menu-highlights-section > h2,
-.menu-section > h2,
-.products > h2,
-.products-section > h2,
-.our-coffee > h2,
-.coffee-section > h2,
-.why-choose-us > h2,
-.why-choose-us-section > h2,
-.menu-highlights .section-title,
-.menu-highlights-section .section-title,
-.menu-section .section-title,
-.products .section-title,
-.products-section .section-title,
-.our-coffee .section-title,
-.coffee-section .section-title,
-.why-choose-us .section-title,
-.why-choose-us-section .section-title {
-  margin: 0 auto 1rem;
-  color: var(--coffee-espresso, #38251b);
-  text-align: center;
-}
-
-.menu-highlights > p,
-.menu-highlights-section > p,
-.menu-section > p,
-.products > p,
-.products-section > p,
-.our-coffee > p,
-.coffee-section > p,
-.why-choose-us > p,
-.why-choose-us-section > p {
-  max-width: 44rem;
-  margin: 0 auto 2rem;
-  color: var(--coffee-brown, #815334);
-  text-align: center;
-  line-height: 1.7;
-}
-
-.menu-highlights .menu-grid,
-.menu-highlights .menu-highlights-grid,
-.menu-highlights-section .menu-grid,
-.menu-highlights-section .menu-highlights-grid,
-.menu-section .menu-grid,
-.menu-section .menu-highlights-grid,
-.products .products-grid,
-.products .product-grid,
-.products-section .products-grid,
-.products-section .product-grid,
-.our-coffee .products-grid,
-.our-coffee .product-grid,
-.coffee-section .products-grid,
-.coffee-section .product-grid {
-  width: min(100%, 1100px);
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  justify-items: center;
-  align-items: stretch;
-  gap: 1.5rem;
-}
-
-.menu-highlights .menu-card,
-.menu-highlights .menu-item,
-.menu-highlights-section .menu-card,
-.menu-highlights-section .menu-item,
-.menu-section .menu-card,
-.menu-section .menu-item,
-.products .product-card,
-.products .product-item,
-.products-section .product-card,
-.products-section .product-item,
-.our-coffee .product-card,
-.our-coffee .product-item,
-.coffee-section .product-card,
-.coffee-section .product-item {
+/* Keep every route within the viewport while preserving normal vertical scrolling. */
+html,
+body,
+#root {
   width: 100%;
-  padding: 1.25rem;
-  border: 1px solid rgb(129 83 52 / 12%);
-  border-radius: 1rem;
-  background: var(--coffee-milk, #fffdf9);
-  box-shadow: 0 10px 28px rgb(56 37 27 / 8%);
-  text-align: center;
-  transition: transform 180ms ease, box-shadow 180ms ease;
-}
-
-.menu-highlights .menu-card:hover,
-.menu-highlights .menu-item:hover,
-.menu-highlights-section .menu-card:hover,
-.menu-highlights-section .menu-item:hover,
-.menu-section .menu-card:hover,
-.menu-section .menu-item:hover,
-.products .product-card:hover,
-.products .product-item:hover,
-.products-section .product-card:hover,
-.products-section .product-item:hover,
-.our-coffee .product-card:hover,
-.our-coffee .product-item:hover,
-.coffee-section .product-card:hover,
-.coffee-section .product-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 15px 34px rgb(56 37 27 / 13%);
-}
-
-.menu-highlights .menu-card img,
-.menu-highlights .menu-item img,
-.menu-highlights-section .menu-card img,
-.menu-highlights-section .menu-item img,
-.menu-section .menu-card img,
-.menu-section .menu-item img,
-.products .product-card img,
-.products .product-item img,
-.products-section .product-card img,
-.products-section .product-item img,
-.our-coffee .product-card img,
-.our-coffee .product-item img,
-.coffee-section .product-card img,
-.coffee-section .product-item img {
-  display: block;
   max-width: 100%;
+}
+
+body,
+#root {
+  overflow-x: clip;
+}
+
+main,
+section,
+footer,
+header {
+  min-width: 0;
+  max-width: 100%;
+}
+
+img,
+svg,
+video,
+canvas,
+iframe {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+button,
+input,
+select,
+textarea {
+  max-width: 100%;
+}
+
+/* Shared coffee-colored section treatment and flexible content widths. */
+section {
+  padding-inline: clamp(1rem, 5vw, 4rem);
+}
+
+.container,
+.section-container,
+.content-wrapper,
+.section-content {
+  width: min(100%, 76rem);
   margin-inline: auto;
-  border-radius: 0.75rem;
 }
 
-.why-choose-us .features,
-.why-choose-us .feature-grid,
-.why-choose-us .reasons-grid,
-.why-choose-us-section .features,
-.why-choose-us-section .feature-grid,
-.why-choose-us-section .reasons-grid {
-  width: min(100%, 1100px);
-  margin: 2rem auto 0;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  justify-items: center;
-  align-items: stretch;
-  gap: 1.5rem;
+section h1,
+section h2,
+section h3,
+footer h1,
+footer h2,
+footer h3 {
+  color: var(--text-h, #302017);
 }
 
-.why-choose-us .feature,
-.why-choose-us .reason,
-.why-choose-us .feature-card,
-.why-choose-us-section .feature,
-.why-choose-us-section .reason,
-.why-choose-us-section .feature-card {
-  width: 100%;
-  padding: 1.5rem;
-  border: 1px solid rgb(129 83 52 / 12%);
-  border-radius: 1rem;
-  background: var(--coffee-milk, #fffdf9);
-  box-shadow: 0 10px 28px rgb(56 37 27 / 7%);
-  text-align: center;
+section a,
+footer a {
+  overflow-wrap: anywhere;
 }
 
-/* Keep footer contact groups in one centered row on wider screens. */
-footer .footer-content,
+/* Let card and feature layouts gracefully reduce their column count. */
+.coffee-grid,
+.menu-grid,
+.menu-highlights-grid,
+.highlight-grid,
+.highlights-grid,
+.product-grid,
+.products-grid,
+.cards-grid,
+.feature-grid,
+.features-grid,
+.benefits-grid,
+.why-choose-us-grid,
+[class*="card-grid"],
+[class*="cards-grid"] {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  min-width: 0;
+}
+
+.coffee-grid > *,
+.menu-grid > *,
+.menu-highlights-grid > *,
+.highlight-grid > *,
+.highlights-grid > *,
+.product-grid > *,
+.products-grid > *,
+.cards-grid > *,
+.feature-grid > *,
+.features-grid > *,
+.benefits-grid > *,
+.why-choose-us-grid > * {
+  min-width: 0;
+}
+
+/* Footer columns wrap instead of forcing a horizontal scrollbar. */
 footer .footer-container,
-.site-footer .footer-content,
-.site-footer .footer-container {
-  width: min(100% - 2rem, 1100px);
-  margin-inline: auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  justify-items: center;
-  align-items: start;
-  gap: 1.5rem;
-  text-align: center;
-}
-
-footer .footer-section,
-footer .footer-column,
-.site-footer .footer-section,
-.site-footer .footer-column {
+footer .footer-content,
+footer .footer-columns,
+footer .footer-grid,
+.footer-container,
+.footer-content,
+.footer-columns,
+.footer-grid {
   width: 100%;
-  text-align: center;
+  max-width: 100%;
+  min-width: 0;
 }
 
-/* Gentle motion for decorative coffee cups */
+.footer-columns,
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr));
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+footer p,
+footer li,
+footer address {
+  overflow-wrap: anywhere;
+}
+
+/* A gentle floating motion for decorative coffee-cup elements. */
 .coffee-cup,
 .cup-animation,
+.coffee-cup-animation,
 .floating-cup {
-  transform-origin: center bottom;
-  animation: coffee-cup-float 3.5s ease-in-out infinite;
-}
-
-.coffee-cup:nth-child(2n),
-.cup-animation:nth-child(2n),
-.floating-cup:nth-child(2n) {
-  animation-delay: 0.45s;
+  transform-origin: 50% 85%;
+  animation: coffee-cup-float 3.6s ease-in-out infinite;
 }
 
 @keyframes coffee-cup-float {
   0%,
   100% {
-    transform: translateY(0) rotate(0);
+    transform: translateY(0) rotate(-1deg);
   }
 
   50% {
-    transform: translateY(-8px) rotate(2deg);
+    transform: translateY(-0.55rem) rotate(1deg);
   }
 }
 
-@media (max-width: 768px) {
-  .menu-highlights .menu-grid,
-  .menu-highlights .menu-highlights-grid,
-  .menu-highlights-section .menu-grid,
-  .menu-highlights-section .menu-highlights-grid,
-  .menu-section .menu-grid,
-  .menu-section .menu-highlights-grid,
-  .products .products-grid,
-  .products .product-grid,
-  .products-section .products-grid,
-  .products-section .product-grid,
-  .our-coffee .products-grid,
-  .our-coffee .product-grid,
-  .coffee-section .products-grid,
-  .coffee-section .product-grid,
-  .why-choose-us .features,
-  .why-choose-us .feature-grid,
-  .why-choose-us .reasons-grid,
-  .why-choose-us-section .features,
-  .why-choose-us-section .feature-grid,
-  .why-choose-us-section .reasons-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 1.25rem;
+@media (max-width: 640px) {
+  section {
+    padding-inline: 1rem;
   }
 
-  footer .footer-content,
-  footer .footer-container,
-  .site-footer .footer-content,
-  .site-footer .footer-container {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1rem;
-  }
-}
-
-@media (max-width: 520px) {
-  .menu-highlights .menu-grid,
-  .menu-highlights .menu-highlights-grid,
-  .menu-highlights-section .menu-grid,
-  .menu-highlights-section .menu-highlights-grid,
-  .menu-section .menu-grid,
-  .menu-section .menu-highlights-grid,
-  .products .products-grid,
-  .products .product-grid,
-  .products-section .products-grid,
-  .products-section .product-grid,
-  .our-coffee .products-grid,
-  .our-coffee .product-grid,
-  .coffee-section .products-grid,
-  .coffee-section .product-grid,
-  .why-choose-us .features,
-  .why-choose-us .feature-grid,
-  .why-choose-us .reasons-grid,
-  .why-choose-us-section .features,
-  .why-choose-us-section .feature-grid,
-  .why-choose-us-section .reasons-grid {
-    grid-template-columns: minmax(0, 1fr);
+  .container,
+  .section-container,
+  .content-wrapper,
+  .section-content {
+    width: 100%;
   }
 
-  footer .footer-content,
-  footer .footer-container,
-  .site-footer .footer-content,
-  .site-footer .footer-container {
+  .footer-columns,
+  .footer-grid {
     grid-template-columns: minmax(0, 1fr);
   }
 }
@@ -303,24 +167,8 @@ footer .footer-column,
 @media (prefers-reduced-motion: reduce) {
   .coffee-cup,
   .cup-animation,
+  .coffee-cup-animation,
   .floating-cup {
     animation: none;
-  }
-
-  .menu-highlights .menu-card,
-  .menu-highlights .menu-item,
-  .menu-highlights-section .menu-card,
-  .menu-highlights-section .menu-item,
-  .menu-section .menu-card,
-  .menu-section .menu-item,
-  .products .product-card,
-  .products .product-item,
-  .products-section .product-card,
-  .products-section .product-item,
-  .our-coffee .product-card,
-  .our-coffee .product-item,
-  .coffee-section .product-card,
-  .coffee-section .product-item {
-    transition: none;
   }
 }
