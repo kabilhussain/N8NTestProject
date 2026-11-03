@@ -1,17 +1,25 @@
-name: Build & SonarQube Analysis
+name: Build Check
+
+# SonarCloud scans this repo through Automatic Analysis (its GitHub app),
+# so this workflow only checks that the app lints and builds.
 
 on:
   push:
     branches:
-      - '**'          # every branch
+      - '**'
   pull_request:
     types: [opened, synchronize, reopened]
-  workflow_dispatch:  # allow manual runs from the Actions tab
+  workflow_dispatch:
+
+concurrency:
+  group: build-check-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
-  build-and-analyze:
-    name: Lint, Build & Scan
+  build:
+    name: Lint & Build
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     defaults:
       run:
         working-directory: my-react-app
@@ -19,8 +27,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0  # full history improves Sonar blame / new-code detection
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -34,15 +40,7 @@ jobs:
 
       - name: Lint
         run: npm run lint
-        continue-on-error: true  # existing lint errors shouldn't block the Sonar scan; remove once clean
+        continue-on-error: true  # report lint errors without failing the build; remove once the code is clean
 
       - name: Build
         run: npm run build
-
-      - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@v5
-        with:
-          projectBaseDir: my-react-app
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
