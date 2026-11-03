@@ -1,5 +1,6 @@
 import './App.css'
 import { Routes, Route } from 'react-router-dom'
+import Header from './components/Header.jsx'
 import Hero from './components/Hero.jsx'
 import MenuHighlights from './components/MenuHighlights.jsx'
 import Products from './components/Products.jsx'
@@ -18,6 +19,7 @@ function App() {
           path="/"
           element={
             <>
+              <Header />
               <Hero />
               <MenuHighlights />
               <Products limit={3} />
