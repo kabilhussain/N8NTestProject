@@ -1,5 +1,209 @@
-/* Adjust hero height to leave space for coffee cards below */
-.hero {
-  min-height: 60vh;
-  padding: 2rem 0;
+.hero-artwork {
+  --coffee-dark: #4a281c;
+  --coffee: #75452f;
+  --coffee-cream: #f2e2c9;
+  --coffee-highlight: #fff7e9;
+
+  position: relative;
+  isolation: isolate;
+  width: clamp(220px, 36vw, 390px);
+  max-width: 100%;
+  aspect-ratio: 1;
+  flex: 0 1 390px;
+  min-width: 0;
+  margin-inline: auto;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(221, 183, 133, 0.28) 0%,
+    rgba(221, 183, 133, 0.12) 48%,
+    transparent 72%
+  );
+}
+
+.hero-artwork__saucer,
+.saucer {
+  position: absolute;
+  z-index: 1;
+  left: 13%;
+  bottom: 15%;
+  width: 74%;
+  height: 15%;
+  border: 2px solid rgba(117, 69, 47, 0.58);
+  border-radius: 50%;
+  background: linear-gradient(180deg, var(--coffee-highlight), var(--coffee-cream));
+  box-shadow:
+    0 12px 18px rgba(74, 40, 28, 0.15),
+    inset 0 -5px 8px rgba(117, 69, 47, 0.13);
+}
+
+.hero-artwork__cup,
+.cup {
+  position: absolute;
+  z-index: 2;
+  left: 25%;
+  bottom: 25%;
+  width: 49%;
+  height: 43%;
+  border-radius: 12% 12% 34% 34% / 12% 12% 24% 24%;
+  background: transparent;
+  filter: drop-shadow(0 8px 7px rgba(74, 40, 28, 0.16));
+}
+
+.hero-artwork__cup::before,
+.cup::before {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  border: 2px solid rgba(117, 69, 47, 0.65);
+  border-radius: inherit;
+  background: linear-gradient(
+    110deg,
+    var(--coffee-highlight) 0%,
+    #f7ead6 43%,
+    #e8cfad 100%
+  );
+  box-shadow:
+    inset -9px 0 12px rgba(117, 69, 47, 0.1),
+    inset 5px 0 9px rgba(255, 255, 255, 0.72);
+  content: "";
+}
+
+.hero-artwork__cup::after,
+.cup::after {
+  position: absolute;
+  z-index: 2;
+  top: 5%;
+  left: 3%;
+  width: 94%;
+  height: 15%;
+  border: 2px solid rgba(117, 69, 47, 0.55);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #fff9ed, #dfc29e);
+  box-shadow: inset 0 -4px 5px rgba(74, 40, 28, 0.16);
+  content: "";
+}
+
+.hero-artwork__handle,
+.handle {
+  position: absolute;
+  z-index: 0;
+  top: 22%;
+  right: -31%;
+  width: 43%;
+  height: 52%;
+  border: clamp(8px, 1.25vw, 14px) solid #e8cfad;
+  border-radius: 50%;
+  background: transparent;
+  box-shadow:
+    2px 2px 0 rgba(117, 69, 47, 0.48),
+    inset -3px 0 3px rgba(117, 69, 47, 0.12);
+}
+
+.hero-artwork__steam,
+.steam {
+  position: absolute;
+  z-index: 3;
+  top: 16%;
+  left: 50%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: clamp(8px, 1.4vw, 15px);
+  width: 42%;
+  height: 31%;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.hero-artwork__steam::before,
+.hero-artwork__steam::after,
+.steam::before,
+.steam::after {
+  width: 12%;
+  height: 72%;
+  border: 2px solid transparent;
+  border-left-color: rgba(117, 69, 47, 0.42);
+  border-radius: 50%;
+  content: "";
+  animation: hero-steam 2.8s ease-in-out infinite;
+}
+
+.hero-artwork__steam::after,
+.steam::after {
+  height: 54%;
+  animation-delay: 0.7s;
+}
+
+.hero-artwork__steam > span,
+.steam > span {
+  display: block;
+  width: 12%;
+  height: 88%;
+  border-left: 2px solid rgba(117, 69, 47, 0.35);
+  border-radius: 50%;
+  transform: rotate(8deg);
+  animation: hero-steam 2.8s ease-in-out 0.35s infinite;
+}
+
+.cup-float {
+  animation: hero-cup-float 4s ease-in-out infinite;
+  transform-origin: center bottom;
+}
+
+.cup-float:nth-of-type(2n) {
+  animation-delay: -1.4s;
+}
+
+@keyframes hero-cup-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+
+  50% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+}
+
+@keyframes hero-steam {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: translateY(5px) scaleY(0.88);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: translateY(-5px) scaleY(1);
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-artwork {
+    width: min(78vw, 320px);
+  }
+
+  .hero-artwork__cup,
+  .cup {
+    left: 24%;
+    width: 51%;
+  }
+
+  .hero-artwork__handle,
+  .handle {
+    right: -28%;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cup-float,
+  .hero-artwork__steam::before,
+  .hero-artwork__steam::after,
+  .hero-artwork__steam > span,
+  .steam::before,
+  .steam::after,
+  .steam > span {
+    animation: none;
+  }
 }
