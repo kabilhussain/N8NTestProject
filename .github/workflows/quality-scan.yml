@@ -165,4 +165,6 @@ jobs:
           path: |
             .quality/findings.json
             .quality/*.json
+          include-hidden-files: true   # .quality is a hidden folder; upload-artifact v4.4+ skips those by default
+          if-no-files-found: error
           retention-days: 14
