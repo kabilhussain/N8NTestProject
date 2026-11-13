@@ -4,7 +4,7 @@ const modules = import.meta.glob('../assets/**/*.{png,jpg,jpeg,webp,gif,svg}', {
 });
 
 const coffeeImages = Object.keys(modules)
-  .sort()
+  .sort((a, b) => a.localeCompare(b))
   .map((key) => modules[key])
   .filter(Boolean);
 
