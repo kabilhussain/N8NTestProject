@@ -1,10 +1,11 @@
 import { Fragment } from 'react'
 
 function AboutUs() {
-  
+
   return (
     <main id="center">
       <h1>About Our Coffee Shop</h1>
+      
       <p>
         Welcome to Bean & Brew, your cozy corner for artisanal coffee and
         delightful pastries. We believe every cup tells a story.
