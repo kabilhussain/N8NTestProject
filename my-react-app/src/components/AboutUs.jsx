@@ -1,5 +1,6 @@
 import { Fragment } from 'react'
 
+
 function AboutUs() {
   return (
     <main id="center">
