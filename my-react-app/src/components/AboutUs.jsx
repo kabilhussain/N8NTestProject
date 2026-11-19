@@ -1,7 +1,7 @@
 import { Fragment } from 'react'
 
-
 function AboutUs() {
+  
   return (
     <main id="center">
       <h1>About Our Coffee Shop</h1>
